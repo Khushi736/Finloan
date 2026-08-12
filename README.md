@@ -21,6 +21,39 @@
 * Responsive UI with Django Templates
 * MySQL Database Integration (XAMPP)
 
+
+## Screenshots
+
+### Home Page
+
+<p align="center">
+  <img src="finloan/screenshots/finloan-home.png" alt="FinLoan Home Page" width="90%">
+</p>
+
+### Login
+
+<p align="center">
+  <img src="finloan/screenshots/login.png" alt="FinLoan Login" width="90%">
+</p>
+
+### Signup
+
+<p align="center">
+  <img src="finloan/screenshots/signup.png" alt="FinLoan Signup" width="90%">
+</p>
+
+### Loan Eligibility
+
+<p align="center">
+  <img src="finloan/screenshots/eligibility.png" alt="FinLoan Loan Eligibility" width="90%">
+</p>
+
+### Loan Details
+
+<p align="center">
+  <img src="finloan/screenshots/loan-details.png" alt="FinLoan Loan Details" width="90%">
+</p>
+
 ## Tech Stack
 
 ### Backend
