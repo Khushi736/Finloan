@@ -1,0 +1,1907 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+
+{% block title %}Check Eligibility{% endblock %}
+
+{% block content %}
+
+<style>
+    .profile-card{
+        border:2px solid #E5E7EB;
+        border-radius:24px;
+        padding:30px;
+        cursor:pointer;
+        transition:.3s;
+    }
+
+    .profile-card:hover{
+        transform:translateY(-5px);
+        border-color:#4F46E5;
+    }
+
+    .profile-card.active{
+        border-color:#4F46E5;
+        background:#EEF2FF;
+    }
+    .document-card{
+
+        border:2px solid #E5E7EB;
+        border-radius:28px;
+        padding:30px;
+        text-align:center;
+        transition: all .35s ease;
+
+    }
+
+    .document-card:hover{
+        transform: translateY(-8px) scale(1.02);
+        border-color:#4F46E5;
+
+    }
+
+    .doc-icon{
+
+        width:80px;
+        height:80px;
+        margin:auto;
+        margin-bottom:20px;
+
+        border-radius:24px;
+
+        background:#EEF2FF;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        font-size:38px;
+
+    }
+
+    .document-card h3{
+
+        color:#101848;
+        font-size:20px;
+        margin-bottom:10px;
+
+    }
+
+    .document-card p{
+
+        color:#6B7280;
+        margin-bottom:20px;
+
+    }
+
+    .upload-btn{
+
+        display:inline-block;
+
+        background:#4F46E5;
+        color:#fff;
+
+        padding:12px 24px;
+
+        border-radius:16px;
+
+        cursor:pointer;
+
+    }
+
+    .upload-area{
+
+        border:3px dashed #C7D2FE;
+
+        border-radius:32px;
+
+        padding:50px;
+
+        text-align:center;
+
+        background:#F8FAFF;
+
+    }
+
+    .status-card{
+
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+
+        padding:18px 22px;
+
+        border-radius:18px;
+
+        background:#F8FAFF;
+
+    }
+    .analysis-card{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:20px;
+        border-radius:20px;
+        background:#F8FAFF;
+    }
+
+    .analysis-card h4{
+        font-weight:700;
+        color:#101848;
+    }
+
+    .analysis-card p{
+        color:#6B7280;
+        margin-top:4px;
+    }
+
+    .good-badge{
+        background:#DCFCE7;
+        color:#16A34A;
+        padding:8px 14px;
+        border-radius:999px;
+        font-weight:600;
+    }
+
+    .loan-card{
+        border:2px solid #EEF2FF;
+        border-radius:28px;
+        padding:30px;
+        transition: all .35s ease;
+    }
+
+    .loan-card:hover{
+        border-color:#4F46E5;
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(79,70,229,.15);
+    }
+
+    .loan-icon{
+        width:70px;
+        height:70px;
+        background:#EEF2FF;
+        border-radius:20px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:32px;
+        margin-bottom:20px;
+    }
+
+    .loan-card h3{
+        color:#101848;
+        font-size:22px;
+        font-weight:700;
+    }
+
+    .loan-card h2{
+        margin-top:15px;
+        font-size:34px;
+        font-weight:800;
+        color:#4F46E5;
+    }
+
+    .loan-card ul{
+        margin-top:20px;
+        color:#6B7280;
+        line-height:2;
+    }
+
+    .loan-card button{
+        width:100%;
+        margin-top:25px;
+        height:52px;
+        border:none;
+        border-radius:16px;
+        background:#4F46E5;
+        color:white;
+        font-weight:700;
+        cursor:pointer;
+    }
+
+
+    .tip-card{
+        padding:20px;
+        border-radius:20px;
+        background:#F8FAFF;
+        font-weight:600;
+        color:#101848;
+    }
+
+    button{
+        position:relative;
+        overflow:hidden;
+    }
+
+    button::after{
+        content:'';
+        position:absolute;
+        width:0;
+        height:0;
+        border-radius:50%;
+        background:rgba(255,255,255,.3);
+        transform:translate(-50%,-50%);
+        transition:.5s;
+    }
+
+    button:active::after{
+        width:300px;
+        height:300px;
+    }
+
+    .success-icon{
+        animation: pulseSuccess 2s infinite;
+    }
+
+    .score-pop{
+
+        animation: popScore .8s ease;
+
+    }
+
+    @keyframes popScore{
+
+        0%{
+            transform:scale(.5);
+            opacity:0;
+        }
+
+        100%{
+            transform:scale(1);
+            opacity:1;
+        }
+
+    }
+
+    @keyframes pulseSuccess{
+        0%{
+            transform: scale(1);
+        }
+        50%{
+            transform: scale(1.12);
+        }
+        100%{
+            transform: scale(1);
+        }
+    }
+</style>
+
+<div class="min-h-screen bg-[#F5F7FF] p-6">
+
+
+<!-- HERO -->
+
+<section class="relative overflow-hidden rounded-[32px] bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 p-10 text-white">
+
+    <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+
+    <div class="grid lg:grid-cols-2 gap-10 items-center relative z-10">
+
+        <div>
+
+            <span class="bg-white/20 px-4 py-2 rounded-full text-sm">
+                AI Powered Eligibility Check
+            </span>
+
+            <h1 class="text-5xl font-bold mt-6 leading-tight">
+                Check Your Loan Eligibility
+            </h1>
+
+            <p class="mt-5 text-indigo-100 text-lg">
+                Find out how much loan you can get in less than 2 minutes.
+                No impact on your credit score.
+            </p>
+
+            <div class="flex gap-4 mt-8">
+
+                <div class="bg-white/10 rounded-2xl px-5 py-4">
+                    <i class="fa-solid fa-shield-halved mr-2"></i> Secure
+                </div>
+
+                <div class="bg-white/10 rounded-2xl px-5 py-4">
+                    <i class="fa-solid fa-bolt mr-2"></i> Instant
+                </div>
+
+                <div class="bg-white/10 rounded-2xl px-5 py-4">
+                    <i class="fa-solid fa-brain mr-2"></i> AI Analysis
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="flex justify-center">
+
+            <div class="bg-white text-[#101848] rounded-[28px] p-8 w-[320px] shadow-2xl">
+
+                <p class="text-gray-500">
+                    Estimated Eligibility
+                </p>
+
+                <h2 class="text-5xl font-bold mt-3">
+                    ₹5L+
+                </h2>
+
+                <div class="mt-8 text-center">
+
+                    <div class="w-40 h-40 rounded-full border-[14px] border-indigo-100 flex items-center justify-center mx-auto">
+
+                        <div>
+                            <h2 class="text-6xl font-bold text-indigo-600 score-pop">
+                                92%
+                            </h2>
+                            <p class="text-gray-500">
+                                Approval Chance
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PROGRESS BAR -->
+
+<section class="bg-white rounded-[28px] p-6 mt-8 shadow-sm">
+
+    <div class="grid grid-cols-5 gap-4 text-center">
+
+        <div>
+            <div class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center mx-auto font-bold">
+                1
+            </div>
+            <p class="mt-3 font-medium">
+                Personal
+            </p>
+        </div>
+
+        <div>
+            <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto font-bold">
+                2
+            </div>
+            <p class="mt-3">
+                Profile
+            </p>
+        </div>
+
+        <div>
+            <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto font-bold">
+                3
+            </div>
+            <p class="mt-3">
+                Financial
+            </p>
+        </div>
+
+        <div>
+            <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto font-bold">
+                4
+            </div>
+            <p class="mt-3">
+                Verification
+            </p>
+        </div>
+
+        <div>
+            <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto font-bold">
+                5
+            </div>
+            <p class="mt-3">
+                Result
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STEP 1 -->
+
+<section class="mt-8" id="step1">
+
+    <div class="bg-white rounded-[32px] p-8 shadow-sm">
+
+        <div class="flex items-center justify-between mb-8">
+
+            <div>
+
+                <h2 class="text-3xl font-bold text-[#101848]">
+                    Personal Information
+                </h2>
+
+                <p class="text-gray-500 mt-2">
+                    Tell us about yourself
+                </p>
+
+            </div>
+
+            <span class="bg-indigo-100 text-indigo-600 px-4 py-2 rounded-full">
+                Step 1 of 5
+            </span>
+
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-6">
+
+            <div>
+
+                <label class="font-medium block mb-2">
+                    Full Name
+                </label>
+
+                <input type="text"
+                       class="w-full h-14 border border-gray-200 rounded-2xl px-5 focus:outline-none focus:ring-4 focus:ring-indigo-100">
+
+            </div>
+
+            <div>
+
+                <label class="font-medium block mb-2">
+                    Mobile Number
+                </label>
+
+                <input type="text"
+                       class="w-full h-14 border border-gray-200 rounded-2xl px-5 focus:outline-none focus:ring-4 focus:ring-indigo-100">
+
+            </div>
+
+            <div>
+
+                <label class="font-medium block mb-2">
+                    Email Address
+                </label>
+
+                <input type="email"
+                       class="w-full h-14 border border-gray-200 rounded-2xl px-5 focus:outline-none focus:ring-4 focus:ring-indigo-100">
+
+            </div>
+
+            <div>
+
+                <label class="font-medium block mb-2">
+                    Date of Birth
+                </label>
+
+                <input type="date"
+                       class="w-full h-14 border border-gray-200 rounded-2xl px-5 focus:outline-none focus:ring-4 focus:ring-indigo-100">
+
+            </div>
+
+            <div class="lg:col-span-2">
+
+                <label class="font-medium block mb-2">
+                    City
+                </label>
+
+                <input type="text"
+                       class="w-full h-14 border border-gray-200 rounded-2xl px-5 focus:outline-none focus:ring-4 focus:ring-indigo-100">
+
+            </div>
+
+        </div>
+
+        <div class="flex justify-end mt-10">
+
+            <button
+                id="step1Next"
+                type="button"
+                class="px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold shadow-lg">
+
+                Continue →
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STEP 2 : USER PROFILE -->
+
+<section class="mt-8 hidden" id="step2">
+
+    <div class="bg-white rounded-[32px] p-8 shadow-sm">
+
+        <div class="flex items-center justify-between mb-8">
+
+            <div>
+
+                <h2 class="text-3xl font-bold text-[#101848]">
+                    Select Your Profile
+                </h2>
+
+                <p class="text-gray-500 mt-2">
+                    Help us personalize your loan recommendations
+                </p>
+
+            </div>
+
+            <span class="bg-indigo-100 text-indigo-600 px-4 py-2 rounded-full">
+                Step 2 of 5
+            </span>
+
+        </div>
+
+        <!-- USER TYPE CARDS -->
+
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+
+            <div class="profile-card" data-type="salaried">
+                <div class="text-4xl mb-4 text-indigo-600">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <h3 class="font-bold text-xl text-[#101848]">
+                    Salaried
+                </h3>
+                <p class="text-gray-500 mt-2">
+                    Working in a private or government organization
+                </p>
+            </div>
+
+            <div class="profile-card" data-type="self-employed">
+                <div class="text-4xl mb-4 text-indigo-600">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <h3 class="font-bold text-xl text-[#101848]">
+                    Self Employed
+                </h3>
+                <p class="text-gray-500 mt-2">
+                    Freelancer, consultant or professional
+                </p>
+            </div>
+
+            <div class="profile-card" data-type="business">
+                <div class="text-4xl mb-4 text-indigo-600">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+                <h3 class="font-bold text-xl text-[#101848]">
+                    Business Owner
+                </h3>
+                <p class="text-gray-500 mt-2">
+                    Running your own business or startup
+                </p>
+            </div>
+
+            <div class="profile-card" data-type="student">
+                <div class="text-4xl mb-4 text-indigo-600">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h3 class="font-bold text-xl text-[#101848]">
+                    Student
+                </h3>
+                <p class="text-gray-500 mt-2">
+                    Pursuing education and looking for study support
+                </p>
+            </div>
+
+            <div class="profile-card" data-type="freelancer">
+                <div class="text-4xl mb-4 text-indigo-600">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <h3 class="font-bold text-xl text-[#101848]">
+                    Freelancer
+                </h3>
+                <p class="text-gray-500 mt-2">
+                    Working independently on projects
+                </p>
+            </div>
+
+            <div class="profile-card" data-type="retired">
+                <div class="text-4xl mb-4 text-indigo-600">
+                    <i class="fa-solid fa-user-clock"></i>
+                </div>
+                <h3 class="font-bold text-xl text-[#101848]">
+                    Pensioner / Retired
+                </h3>
+                <p class="text-gray-500 mt-2">
+                    Receiving pension or retirement income
+                </p>
+            </div>
+
+        </div>
+
+        <!-- DYNAMIC FORM AREA -->
+
+        <div id="dynamicForm" class="mt-10 hidden">
+
+            <!-- SALARIED FORM -->
+
+            <div id="salariedFields" class="hidden">
+
+                <div class="grid lg:grid-cols-2 gap-6">
+
+                    <div>
+                        <label class="font-medium block mb-2">
+                            Monthly Income
+                        </label>
+                        <input type="number"
+                               class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+                    </div>
+
+                    <div>
+                        <label class="font-medium block mb-2">
+                            Company Type
+                        </label>
+                        <select class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+                            <option>Private</option>
+                            <option>Government</option>
+                            <option>PSU</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="font-medium block mb-2">
+                            Work Experience
+                        </label>
+                        <input type="text"
+                               class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+                    </div>
+
+                    <div>
+                        <label class="font-medium block mb-2">
+                            Existing EMI
+                        </label>
+                        <input type="number"
+                               class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- BUSINESS FORM -->
+
+            <div id="businessFields" class="hidden">
+
+                <div class="grid lg:grid-cols-2 gap-6">
+
+                    <div>
+                        <label class="font-medium block mb-2">
+                            Annual Revenue
+                        </label>
+                        <input type="number"
+                               class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+                    </div>
+
+                    <div>
+                        <label class="font-medium block mb-2">
+                            Business Type
+                        </label>
+                        <input type="text"
+                               class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+                    </div>
+
+                    <div>
+                        <label class="font-medium block mb-2">
+                            Years in Business
+                        </label>
+                        <input type="number"
+                               class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- STUDENT FORM -->
+
+            <div id="studentFields" class="hidden">
+
+                <div class="grid lg:grid-cols-2 gap-6">
+
+                    <div>
+                        <label class="font-medium block mb-2">
+                            College Name
+                        </label>
+                        <input type="text"
+                               class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+                    </div>
+
+                    <div>
+                        <label class="font-medium block mb-2">
+                            Course
+                        </label>
+                        <input type="text"
+                               class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+                    </div>
+
+                    <div>
+                        <label class="font-medium block mb-2">
+                            Guardian Income
+                        </label>
+                        <input type="number"
+                               class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BUTTONS -->
+
+        <div class="flex justify-between mt-10">
+
+            <button id="step2Prev"
+                class="px-8 py-4 rounded-2xl border border-gray-300 font-semibold">
+                ← Previous
+            </button>
+
+            <button id="step2Next"
+                class="px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold shadow-lg">
+                Continue →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STEP 3 : FINANCIAL DETAILS -->
+
+<section class="mt-8 hidden" id="step3">
+
+    <div class="grid lg:grid-cols-3 gap-8">
+
+        <!-- LEFT FORM -->
+
+        <div class="lg:col-span-2">
+
+            <div class="bg-white rounded-[32px] p-8 shadow-sm">
+
+                <div class="flex items-center justify-between mb-8">
+
+                    <div>
+
+                        <h2 class="text-3xl font-bold text-[#101848]">
+                            Financial Details
+                        </h2>
+
+                        <p class="text-gray-500 mt-2">
+                            Tell us about your financial profile
+                        </p>
+
+                    </div>
+
+                    <span class="bg-indigo-100 text-indigo-600 px-4 py-2 rounded-full">
+                        Step 3 of 5
+                    </span>
+
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-6">
+
+                    <!-- Monthly Income -->
+
+                    <div>
+
+                        <label class="font-medium block mb-2">
+                            Monthly Income
+                        </label>
+
+                        <input type="number"
+                               id="income"
+                               placeholder="₹ 50,000"
+                               class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+
+                    </div>
+
+                    <!-- Existing EMI -->
+
+                    <div>
+
+                        <label class="font-medium block mb-2">
+                            Existing EMI
+                        </label>
+
+                        <input type="number"
+                               id="emi"
+                               placeholder="₹ 5,000"
+                               class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+
+                    </div>
+
+                    <!-- Existing Loans -->
+
+                    <div>
+
+                        <label class="font-medium block mb-2">
+                            Existing Loans
+                        </label>
+
+                        <select class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+
+                            <option>No Active Loan</option>
+                            <option>Personal Loan</option>
+                            <option>Home Loan</option>
+                            <option>Car Loan</option>
+                            <option>Education Loan</option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Bank Account -->
+
+                    <div>
+
+                        <label class="font-medium block mb-2">
+                            Bank Account Type
+                        </label>
+
+                        <select class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+
+                            <option>Savings Account</option>
+                            <option>Current Account</option>
+                            <option>Salary Account</option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Savings -->
+
+                    <div>
+
+                        <label class="font-medium block mb-2">
+                            Monthly Savings
+                        </label>
+
+                        <input type="number"
+                               id="savings"
+                               placeholder="₹ 10,000"
+                               class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+
+                    </div>
+
+                    <!-- Credit Score -->
+
+                    <div>
+
+                        <label class="font-medium block mb-2">
+                            Credit Score (Optional)
+                        </label>
+
+                        <input type="number"
+                               id="creditScore"
+                               placeholder="750"
+                               class="w-full h-14 border border-gray-200 rounded-2xl px-5">
+
+                    </div>
+
+                </div>
+
+                <!-- BUTTONS -->
+
+                <div class="flex justify-between mt-10">
+
+                    <button id="step3Prev"
+                        class="px-8 py-4 rounded-2xl border border-gray-300 font-semibold">
+
+                        ← Previous
+
+                    </button>
+
+                    <button id="step3Next"
+                        class="px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold shadow-lg">
+
+                        Continue →
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT AI PANEL -->
+
+        <div>
+
+            <div class="bg-gradient-to-br from-indigo-600 to-violet-600 text-white rounded-[32px] p-8 sticky top-6">
+
+                <h3 class="text-2xl font-bold">
+                    AI Eligibility Meter
+                </h3>
+
+                <p class="text-indigo-100 mt-2">
+                    Updates in real-time as you fill details
+                </p>
+
+                <!-- SCORE CIRCLE -->
+
+                <div class="flex justify-center mt-8">
+
+                    <div
+                        class="w-48 h-48 rounded-full border-[14px] border-white/30 flex items-center justify-center">
+
+                        <div class="text-center">
+
+                            <h2 id="scoreValue"
+                                class="text-5xl font-bold">
+
+                                70%
+
+                            </h2>
+
+                            <p class="text-indigo-100 mt-2">
+                                Eligibility
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- INSIGHTS -->
+
+                <div class="mt-8 space-y-4">
+
+                    <div
+                        class="bg-white/10 rounded-2xl p-4 flex justify-between">
+
+                        <span>Income Stability</span>
+
+                        <span>✓ Good</span>
+
+                    </div>
+
+                    <div
+                        class="bg-white/10 rounded-2xl p-4 flex justify-between">
+
+                        <span>EMI Burden</span>
+
+                        <span id="emiStatus">
+                            Moderate
+                        </span>
+
+                    </div>
+
+                    <div
+                        class="bg-white/10 rounded-2xl p-4 flex justify-between">
+
+                        <span>Approval Chance</span>
+
+                        <span id="approvalChance">
+                            Medium
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <!-- LOAN LIMIT -->
+
+                <div
+                    class="mt-8 bg-white text-[#101848] rounded-3xl p-6">
+
+                    <p class="text-gray-500">
+                        Estimated Loan Amount
+                    </p>
+
+                    <h2 id="loanLimit"
+                        class="text-4xl font-bold mt-2">
+
+                        ₹0
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STEP 4 : DOCUMENT VERIFICATION -->
+
+<section class="mt-8 hidden" id="step4">
+
+    <div class="bg-white rounded-[32px] p-8 shadow-sm">
+
+        <div class="flex items-center justify-between mb-8">
+
+            <div>
+
+                <h2 class="text-3xl font-bold text-[#101848]">
+                    Identity Verification
+                </h2>
+
+                <p class="text-gray-500 mt-2">
+                    Upload your documents securely for verification
+                </p>
+
+            </div>
+
+            <span class="bg-indigo-100 text-indigo-600 px-4 py-2 rounded-full">
+                Step 4 of 5
+            </span>
+
+        </div>
+
+        <!-- SECURITY NOTICE -->
+
+        <div class="bg-indigo-50 border border-indigo-100 rounded-3xl p-5 mb-8">
+
+            <div class="flex items-center gap-3">
+
+                <div class="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                </div>
+
+                <div>
+
+                    <h4 class="font-semibold text-[#101848]">
+                        Your documents are encrypted
+                    </h4>
+
+                    <p class="text-gray-500 text-sm">
+                        We use bank-grade security to protect your data.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- DOCUMENT CARDS -->
+
+        <div class="grid lg:grid-cols-3 gap-6">
+
+            <!-- PAN -->
+
+            <div class="document-card">
+
+                <div class="doc-icon">
+                    <i class="fa-solid fa-id-card"></i>
+                </div>
+
+                <h3>PAN Card</h3>
+
+                <p>Upload clear PAN image</p>
+
+                <label class="upload-btn">
+
+                    Upload PAN
+
+                    <input type="file"
+                           hidden
+                           accept=".jpg,.jpeg,.png,.pdf">
+
+                </label>
+
+            </div>
+
+            <!-- AADHAAR -->
+
+            <div class="document-card">
+
+                <div class="doc-icon">
+                    <i class="fa-solid fa-address-card"></i>
+                </div>
+
+                <h3>Aadhaar Card</h3>
+
+                <p>Front & Back side</p>
+
+                <label class="upload-btn">
+
+                    Upload Aadhaar
+
+                    <input type="file"
+                           hidden
+                           accept=".jpg,.jpeg,.png,.pdf">
+
+                </label>
+
+            </div>
+
+            <!-- BANK -->
+
+            <div class="document-card">
+
+                <div class="doc-icon">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+
+                <h3>Bank Statement</h3>
+
+                <p>Last 3 months statement</p>
+
+                <label class="upload-btn">
+
+                    Upload Statement
+
+                    <input type="file"
+                           hidden
+                           accept=".pdf">
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- VERIFICATION STATUS -->
+
+        <div class="mt-10 grid lg:grid-cols-3 gap-4">
+
+            <div class="status-card">
+
+                <span>PAN Verification</span>
+
+                <span class="text-yellow-500">
+                    Pending
+                </span>
+
+            </div>
+
+            <div class="status-card">
+
+                <span>Aadhaar Verification</span>
+
+                <span class="text-yellow-500">
+                    Pending
+                </span>
+
+            </div>
+
+            <div class="status-card">
+
+                <span>Bank Verification</span>
+
+                <span class="text-yellow-500">
+                    Pending
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- BUTTONS -->
+
+        <div class="flex justify-between mt-10">
+
+            <button id="step4Prev"
+                class="px-8 py-4 rounded-2xl border border-gray-300 font-semibold">
+
+                ← Previous
+
+            </button>
+
+            <button
+                id="step4Next"
+                class="px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold shadow-lg">
+
+                Verify & Continue →
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STEP 5 : ELIGIBILITY RESULT -->
+
+<section class="mt-8 hidden" id="step5">
+
+    <div class="space-y-8">
+
+        <!-- SUCCESS HERO -->
+
+        <div class="relative overflow-hidden rounded-[32px] bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 p-10 text-white">
+
+            <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+
+            <div class="relative z-10 text-center">
+
+                <div class="w-28 h-28 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 success-icon">
+
+                    <span class="text-5xl">
+                        <i class="fa-solid fa-circle-check text-white"></i>
+                    </span>
+
+                </div>
+
+                <h1 class="text-5xl font-bold">
+                    Congratulations!
+                </h1>
+
+                <p class="mt-4 text-xl text-indigo-100">
+                    Based on your profile, you're eligible for
+                </p>
+
+                <h2 id="finalLoanAmount"
+                    class="text-7xl font-extrabold mt-6">
+                    ₹0
+                </h2>
+
+                <p class="mt-4 text-lg text-indigo-100">
+                    Pre-qualified loan amount
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- SCORE + ANALYSIS -->
+
+        <div class="grid lg:grid-cols-3 gap-8">
+
+            <!-- SCORE -->
+
+            <div class="bg-white rounded-[32px] p-8 shadow-sm">
+
+                <h3 class="text-2xl font-bold text-[#101848]">
+                    Eligibility Score
+                </h3>
+
+                <div class="flex justify-center mt-8">
+
+                    <div class="w-56 h-56 rounded-full border-[16px] border-indigo-500 flex items-center justify-center">
+
+                        <div class="text-center">
+
+                            <h2 id="finalScore"
+                                class="text-6xl font-bold text-indigo-600">
+                                0%
+                            </h2>
+
+                            <p class="text-gray-500 mt-2">
+                                Excellent
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ANALYSIS -->
+
+            <div class="lg:col-span-2 bg-white rounded-[32px] p-8 shadow-sm">
+
+                <h3 class="text-2xl font-bold text-[#101848]">
+                    AI Profile Analysis
+                </h3>
+
+                <div class="grid md:grid-cols-2 gap-5 mt-8">
+
+                    <div class="analysis-card">
+
+                        <div>
+                            <h4>Income Stability</h4>
+                            <p>Strong monthly income</p>
+                        </div>
+
+                        <span class="good-badge">
+                            <i class="fa-solid fa-circle-check mr-2"></i> Strong
+                        </span>
+
+                    </div>
+
+                    <div class="analysis-card">
+
+                        <div>
+                            <h4>Repayment Capacity</h4>
+                            <p>Low debt burden</p>
+                        </div>
+
+                        <span class="good-badge"> 
+                            <i class="fa-solid fa-circle-check mr-2"></i> Excellent
+                        </span>
+
+                    </div>
+
+                    <div class="analysis-card">
+
+                        <div>
+                            <h4>Financial Health</h4>
+                            <p>Good banking profile</p>
+                        </div>
+
+                        <span class="good-badge">
+                            <i class="fa-solid fa-circle-check mr-2"></i> Healthy
+                        </span>
+
+                    </div>
+
+                    <div class="analysis-card">
+
+                        <div>
+                            <h4>Risk Assessment</h4>
+                            <p>Low lending risk</p>
+                        </div>
+
+                        <span class="good-badge">                      
+                            <i class="fa-solid fa-circle-check mr-2"></i> Low Risk
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- LOAN RECOMMENDATIONS -->
+
+        <div class="bg-white rounded-[32px] p-8 shadow-sm">
+
+            <div class="flex justify-between items-center">
+
+                <div>
+
+                    <h2 class="text-3xl font-bold text-[#101848]">
+                        Recommended Loans
+                    </h2>
+
+                    <p class="text-gray-500 mt-2">
+                        AI-selected offers matching your profile
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6 mt-8">
+
+                <!-- CARD 1 -->
+
+                <div class="loan-card">
+
+                    <div class="loan-icon">
+                        <i class="fa-solid fa-credit-card"></i>
+                    </div>
+
+                    <h3>Personal Loan</h3>
+
+                    <h2 id="personalLoanAmount">
+                        ₹0
+                    </h2>
+
+                    <ul>
+                        <li>
+                            Interest:
+                            <span id="personalInterest">0%</span>
+                        </li>
+
+                        <li>
+                            Tenure:
+                            <span id="personalTenure">0 Months</span>
+                        </li>
+
+                        <li>
+                            Approval:
+                            <span id="personalApproval">Pending</span>
+                        </li>
+                    </ul>
+
+                    <button>
+                        Apply Now
+                    </button>
+
+                </div>
+
+                <!-- CARD 2 -->
+
+                <div class="loan-card">
+
+                    <div class="loan-icon">
+                        <i class="fa-solid fa-house"></i>
+                    </div>
+
+                    <h3>Home Loan</h3>
+
+                    <h2 id="homeLoanAmount">
+                        ₹0
+                    </h2>
+
+                    <ul>
+                        <li>
+                            Interest:
+                            <span id="homeInterest">0%</span>
+                        </li>
+
+                        <li>
+                            Tenure:
+                            <span id="homeTenure">0 Years</span>
+                        </li>
+
+                        <li>
+                            Approval:
+                            <span id="homeApproval">Pending</span>
+                        </li>
+                    </ul>
+
+                    <button>
+                        Apply Now
+                    </button>
+
+                </div>
+
+                <!-- CARD 3 -->
+
+                <div class="loan-card">
+
+                    <div class="loan-icon">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+
+                    <h3>Business Loan</h3>
+
+                    <h2 id="businessLoanAmount">
+                        ₹0
+                    </h2>
+
+                    <ul>
+                        <li>
+                            Interest:
+                            <span id="businessInterest">0%</span>
+                        </li>
+
+                        <li>
+                            Tenure:
+                            <span id="businessTenure">0 Months</span>
+                        </li>
+
+                        <li>
+                            Approval:
+                            <span id="businessApproval">Pending</span>
+                        </li>
+                    </ul>
+
+                    <button>
+                        Apply Now
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- IMPROVEMENT SUGGESTIONS -->
+
+        <div class="bg-white rounded-[32px] p-8 shadow-sm">
+
+            <h2 class="text-3xl font-bold text-[#101848]">
+                Improve Your Eligibility
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-5 mt-8">
+
+                <div class="tip-card">
+                    ✓ Maintain higher account balance
+                </div>
+
+                <div class="tip-card">
+                    ✓ Reduce existing EMI burden
+                </div>
+
+                <div class="tip-card">
+                    ✓ Improve credit score above 750
+                </div>
+
+                <div class="tip-card">
+                    ✓ Keep income records updated
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FINAL CTA -->
+
+        <div class="bg-gradient-to-r from-indigo-600 to-violet-600 rounded-[32px] p-10 text-center text-white">
+
+            <h2 class="text-4xl font-bold">
+                Ready to Apply?
+            </h2>
+
+            <p class="mt-4 text-indigo-100">
+                Complete your application and get instant approval.
+            </p>
+
+            <div class="flex justify-center gap-5 mt-8">
+
+                <a href="{% url 'login' %}?next=dashboard"
+                   class="px-8 py-4 bg-white text-indigo-600 rounded-2xl font-semibold">
+
+                    Apply Loan
+
+                </a>
+      
+
+                <a href="{% url 'dashboard' %}"
+                   class="px-8 py-4 border border-white rounded-2xl font-semibold">
+
+                    Go To Dashboard
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script>
+
+const cards = document.querySelectorAll('.profile-card');
+
+cards.forEach(card => {
+
+    card.addEventListener('click', function(){
+
+        cards.forEach(c => c.classList.remove('active'));
+
+        this.classList.add('active');
+
+        document.getElementById('dynamicForm')
+                .classList.remove('hidden');
+
+        document.querySelectorAll(
+            '#salariedFields,#businessFields,#studentFields'
+        ).forEach(el => el.classList.add('hidden'));
+
+        const type = this.dataset.type;
+
+        if(type === 'salaried'){
+            document.getElementById('salariedFields')
+                    .classList.remove('hidden');
+        }
+
+        if(type === 'business'){
+            document.getElementById('businessFields')
+                    .classList.remove('hidden');
+        }
+
+        if(type === 'student'){
+            document.getElementById('studentFields')
+                    .classList.remove('hidden');
+        }
+
+    });
+
+});
+
+
+const incomeField = document.getElementById("income");
+const emiField = document.getElementById("emi");
+
+function updateEligibility() {
+
+    let income =
+        parseInt(document.getElementById("income")?.value) || 0;
+
+    let emi =
+        parseInt(document.getElementById("emi")?.value) || 0;
+
+    let credit =
+        parseInt(document.getElementById("creditScore")?.value) || 650;
+
+    let savings =
+        parseInt(document.getElementById("savings")?.value) || 0;
+
+    let score = 40;
+
+    // Income
+
+    if(income >= 100000)
+        score += 25;
+    else if(income >= 60000)
+        score += 18;
+    else if(income >= 30000)
+        score += 12;
+
+    // Credit Score
+
+    if(credit >= 800)
+        score += 20;
+    else if(credit >= 750)
+        score += 15;
+    else if(credit >= 700)
+        score += 10;
+
+    // EMI Ratio
+
+    let emiRatio = income ? emi / income : 0;
+
+    if(emiRatio < 0.2)
+        score += 10;
+    else if(emiRatio < 0.4)
+        score += 5;
+
+    // Savings
+
+    if(savings > 30000)
+        score += 10;
+    else if(savings > 10000)
+        score += 5;
+
+    score = Math.min(score,95);
+
+    let approval =
+        score >= 85 ? "Very High" :
+        score >= 70 ? "High" :
+        score >= 55 ? "Medium" :
+        "Low";
+
+    let emiStatus =
+        emiRatio < .2 ? "Excellent" :
+        emiRatio < .4 ? "Good" :
+        "Risky";
+
+    let loanAmount;
+
+    if(score >= 85){
+        loanAmount = income * 30;
+    }
+    else if(score >= 70){
+        loanAmount = income * 24;
+    }
+    else if(score >= 55){
+        loanAmount = income * 18;
+    }
+    else{
+        loanAmount = income * 12;
+    }
+
+    loanAmount = Math.max(100000, loanAmount);
+
+    document.getElementById("scoreValue").innerText =
+        score + "%";
+
+    document.getElementById("approvalChance").innerText =
+        approval;
+
+    document.getElementById("emiStatus").innerText =
+        emiStatus;
+
+    document.getElementById("loanLimit").innerText =
+        "₹" + loanAmount.toLocaleString("en-IN");
+
+    window.currentEligibilityScore = score;
+    window.currentLoanAmount = loanAmount;
+}
+
+["income","emi","creditScore","savings"]
+.forEach(id => {
+
+    const field = document.getElementById(id);
+
+    if(field){
+        field.addEventListener(
+            "input",
+            updateEligibility
+        );
+    }
+
+});
+
+
+
+
+document.getElementById("step1Next")
+.addEventListener("click", function(){
+
+    document.getElementById("step1")
+            .classList.add("hidden");
+
+    document.getElementById("step2")
+            .classList.remove("hidden");
+
+});
+
+document.getElementById("step2Next")
+.addEventListener("click", function(){
+
+    document.getElementById("step2")
+            .classList.add("hidden");
+
+    document.getElementById("step3")
+            .classList.remove("hidden");
+
+});
+
+document.getElementById("step3Next")
+.addEventListener("click", function(){
+
+    document.getElementById("step3")
+            .classList.add("hidden");
+
+    document.getElementById("step4")
+            .classList.remove("hidden");
+
+});
+
+
+document.getElementById("step4Next")
+.addEventListener("click", function(){
+
+    document.getElementById("step4")
+            .classList.add("hidden");
+
+    document.getElementById("step5")
+            .classList.remove("hidden");
+
+    const score =
+        window.currentEligibilityScore || 70;
+
+    const amount =
+        window.currentLoanAmount || 500000;
+
+    // Final Score
+
+    const finalScore =
+        document.getElementById("finalScore");
+
+    if(finalScore){
+        finalScore.innerText = score + "%";
+    }
+
+    // Final Amount
+
+    const finalLoan =
+        document.getElementById("finalLoanAmount");
+
+    if(finalLoan){
+        finalLoan.innerText =
+            "₹" +
+            amount.toLocaleString("en-IN");
+    }
+
+    // Personal Loan
+
+    const personal =
+        document.getElementById("personalLoanAmount");
+
+    if(personal){
+        personal.innerText =
+            "₹" +
+            amount.toLocaleString("en-IN");
+    }
+
+    // Home Loan
+
+    const home =
+        document.getElementById("homeLoanAmount");
+
+    if(home){
+        home.innerText =
+            "₹" +
+            (amount * 5)
+            .toLocaleString("en-IN");
+    }
+
+    // Business Loan
+
+    const business =
+        document.getElementById("businessLoanAmount");
+
+    if(business){
+        business.innerText =
+            "₹" +
+            (amount * 2)
+            .toLocaleString("en-IN");
+    }
+
+    // PREMIUM CONFETTI
+
+    const duration = 5000;
+
+    const animationEnd =
+        Date.now() + duration;
+
+    const defaults = {
+        startVelocity: 30,
+        spread: 360,
+        ticks: 80,
+        zIndex: 9999
+    };
+
+    function randomInRange(min,max){
+        return Math.random() * (max-min) + min;
+    }
+
+    const interval = setInterval(function(){
+
+        const timeLeft =
+            animationEnd - Date.now();
+
+        if(timeLeft <= 0){
+            return clearInterval(interval);
+        }
+
+        const particleCount =
+            50 * (timeLeft / duration);
+
+        confetti({
+            ...defaults,
+            particleCount,
+            origin:{
+                x:randomInRange(0.1,0.3),
+                y:Math.random()-0.2
+            }
+        });
+
+        confetti({
+            ...defaults,
+            particleCount,
+            origin:{
+                x:randomInRange(0.7,0.9),
+                y:Math.random()-0.2
+            }
+        });
+
+    },250);
+
+});
+
+document.getElementById("step2Prev")
+.addEventListener("click", function(){
+
+    document.getElementById("step2")
+            .classList.add("hidden");
+
+    document.getElementById("step1")
+            .classList.remove("hidden");
+
+});
+
+document.getElementById("step3Prev")
+.addEventListener("click", function(){
+
+    document.getElementById("step3")
+            .classList.add("hidden");
+
+    document.getElementById("step2")
+            .classList.remove("hidden");
+
+});
+
+document.getElementById("step4Prev")
+.addEventListener("click", function(){
+
+    document.getElementById("step4")
+            .classList.add("hidden");
+
+    document.getElementById("step3")
+            .classList.remove("hidden");
+
+});
+
+updateEligibility();
+</script>
+
+{% endblock %}

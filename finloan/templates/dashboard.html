@@ -1,0 +1,1001 @@
+{% extends "dashboard_base.html" %}
+
+{% load static %}
+
+  {% block content %}
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Inter',sans-serif;
+    }
+
+    body{
+      background:#f5f7fb;
+      min-height:100vh;
+      display:flex;
+    }
+
+    /* WELCOME */
+
+    .welcome{
+      margin-bottom:26px;
+    }
+
+    .welcome h1{
+      font-size:34px;
+      color:#1a2250;
+      margin-bottom:8px;
+    }
+
+    .welcome p{
+      color:#7b819d;
+      font-size:15px;
+    }
+
+    /* STATS */
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+      margin-bottom:28px;
+    }
+
+    .stat-card{
+      background:#fff;
+      border-radius:24px;
+      padding:24px;
+      box-shadow:0 8px 24px rgba(0,0,0,.04);
+    }
+
+    .stat-card p{
+      color:#7b819d;
+      font-size:14px;
+      margin-bottom:12px;
+    }
+
+    .stat-card h2{
+      font-size:32px;
+      color:#1b2351;
+      margin-bottom:10px;
+    }
+
+    .stat-card span{
+      color:#7b819d;
+      font-size:14px;
+    }
+
+    .green{
+      color:#1eb980 !important;
+      font-weight:700;
+    }
+
+    /* RECOMMENDED */
+
+    .loan-card{
+      background:#fff;
+      border-radius:28px;
+      padding:30px;
+      box-shadow:0 8px 24px rgba(0,0,0,.04);
+      margin-bottom:28px;
+    }
+
+    .loan-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:24px;
+    }
+
+    .loan-header-left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .loan-header h2{
+      font-size:24px;
+      color:#1a2250;
+    }
+
+    .ai-badge{
+      background:#f1eeff;
+      color:#6a4dff;
+      padding:8px 14px;
+      border-radius:12px;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .loan-divider{
+      height:1px;
+      background:#e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    .loan-body{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:30px;
+      flex-wrap:wrap;
+    }
+
+    .loan-left{
+      display:flex;
+      gap:40px;
+      align-items:center;
+    }
+
+    .loan-icon{
+      width:150px;
+      height:150px;
+      border-radius:24px;
+      background:#eef2ff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:80px;
+      color:#6a4dff;
+    }
+
+    .loan-details h3{
+      font-size:26px;
+      color:#1b2351;
+      margin-bottom:5px;
+    }
+
+    .loan-details p{
+      color:#7b819d;
+      margin-bottom:15px;
+      line-height:1.7;
+    }
+
+    .v-divider{
+      width:1px;
+      height:80px;
+      background:#e5e7eb;
+      justify-content:space-between;
+    }
+
+    .loan-info{
+      display:flex;
+      gap:90px;
+      flex-wrap:wrap;
+    }
+
+    .loan-info div small{
+      display:block;
+      color:#7b819d;
+      font-size:13px;
+      margin-bottom:5px;
+    }
+
+    .loan-info div h4{
+      color:#1a2250;
+      font-size:24px;
+      margin-bottom:5px;
+    }
+
+    .loan-info div span{
+      color:#7b819d;
+      font-size:13px;
+    }
+
+    
+    .loan-right{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        gap:8px;
+        min-width:180px;
+    }
+
+    .loan-right p{
+        color:#5b6485;
+        font-size:13px;
+        margin:0;
+        line-height:1.4;
+    }
+
+    .loan-right p::before{
+        content:"•";
+        color:#6a4dff;
+        margin-right:8px;
+    }
+
+    .apply-btn{
+        margin-top:18px;
+        border:none;
+        height:42px;
+        padding:0 24px;
+        border-radius:8px;
+        background:linear-gradient(
+            90deg,
+            #7b61ff,
+            #5a3dff
+        );
+        color:#fff;
+        font-size:14px;
+        font-weight:600;
+        cursor:pointer;
+        transition:all .3s ease;
+        box-shadow:0 8px 20px rgba(123,97,255,.25);
+    }
+
+    .apply-btn:hover{
+        transform:translateY(-2px);
+        box-shadow:0 12px 24px rgba(123,97,255,.35);
+    }
+
+    /* JOURNEY */
+
+    .journey-card{
+      background:#fff;
+      border-radius:28px;
+      padding:30px;
+      box-shadow:0 8px 24px rgba(0,0,0,.04);
+      margin-bottom:28px;
+    }
+
+    .journey-card h2{
+      margin-bottom:30px;
+      color:#1a2250;
+    }
+
+    .steps{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .step{
+      flex:1;
+      min-width:120px;
+      text-align:center;
+      position:relative;
+    }
+
+    .step::after{
+      content:'';
+      position:absolute;
+      top:20px;
+      right:-50%;
+      width:100%;
+      height:2px;
+      background:#e6e9f5;
+      z-index:0;
+    }
+
+    .step:last-child::after{
+      display:none;
+    }
+
+    .step-icon{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:#e8fff5;
+      color:#1eb980;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 12px;
+      position:relative;
+      z-index:2;
+      border:4px solid #fff;
+    }
+
+    .step.pending .step-icon{
+      background:#f4f5fb;
+      color:#7b819d;
+    }
+
+    .step h4{
+      color:#1a2250;
+      margin-bottom:6px;
+      font-size:15px;
+    }
+
+    .step p{
+      color:#7b819d;
+      font-size:13px;
+    }
+
+    /* CATEGORY */
+
+    .categories{
+      background:#fff;
+      border-radius:28px;
+      padding:30px;
+      box-shadow:0 8px 24px rgba(0,0,0,.04);
+    }
+
+    .category-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:24px;
+    }
+
+    .category-header h2{
+      color:#1a2250;
+    }
+
+    .category-header a{
+      color:#6a4dff;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    .category-grid{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:20px;
+    }
+
+    .category-card{
+      background:#f8f9fd;
+      border-radius:22px;
+      padding:24px 18px;
+      text-align:center;
+      transition:.3s;
+      cursor:pointer;
+    }
+
+    .category-card:hover{
+      transform:translateY(-5px);
+      background:#fff;
+      box-shadow:0 10px 24px rgba(0,0,0,.06);
+    }
+
+    .category-icon{
+      width:64px;
+      height:64px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 14px;
+      font-size:28px;
+    }
+
+    .pink{
+      background:#ffe9ef;
+      color:#ff4f7b;
+    }
+
+    .green-bg{
+      background:#e8fff5;
+      color:#18b87c;
+    }
+
+    .blue-bg{
+      background:#eaf0ff;
+      color:#4d6fff;
+    }
+
+    .yellow-bg{
+      background:#fff4e6;
+      color:#ff9d2d;
+    }
+
+    .purple-bg{
+      background:#f1eeff;
+      color:#6a4dff;
+    }
+
+    .category-card h4{
+      font-size:15px;
+      color:#1b2351;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:1200px){
+
+      .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .category-grid{
+        grid-template-columns:repeat(3,1fr);
+      }
+
+    }
+
+    @media(max-width:900px){
+
+      .sidebar{
+        display:none;
+      }
+
+      .main{
+        width:100%;
+        margin-left:0;
+      }
+
+      .topbar{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .top-right{
+        justify-content:space-between;
+      }
+
+      .stats-grid{
+        grid-template-columns:1fr;
+      }
+
+      .category-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+    }
+
+    @media(max-width:600px){
+
+      .loan-body{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .loan-left{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .category-grid{
+        grid-template-columns:1fr;
+      }
+
+      .steps{
+        flex-direction:column;
+      }
+
+      .step::after{
+        display:none;
+      }
+
+    }
+
+  </style>
+
+
+
+
+    <!-- WELCOME -->
+
+    <div class="welcome">
+
+      <h1>Welcome back, Rahul!</h1>
+
+      <p>
+        Here's what's happening with your loan journey.
+      </p>
+
+    </div>
+
+    <!-- STATS -->
+
+    <div class="stats-grid">
+
+      <div class="stat-card">
+
+        <p>Total Loans</p>
+
+        <h2>2</h2>
+
+        <span>Active Loans</span>
+
+      </div>
+
+      <div class="stat-card">
+
+        <p>Approved Limit</p>
+
+        <h2>₹8,50,000</h2>
+
+        <span>Total Approved</span>
+
+      </div>
+
+      <div class="stat-card">
+
+        <p>EMI Due</p>
+
+        <h2>₹12,450</h2>
+
+        <span>Due on 25 May 2026</span>
+
+      </div>
+
+      <div class="stat-card">
+
+        <p>Credit Score</p>
+
+        <h2>750</h2>
+
+        <span class="green">Good</span>
+
+      </div>
+
+    </div>
+
+    <!-- RECOMMENDED -->
+
+    <div class="loan-card">
+
+      <div class="loan-header">
+
+        <div class="loan-header-left">
+
+          <h2>Recommended For You</h2>
+
+          <div class="ai-badge">
+            ✨ AI Powered
+          </div>
+
+        </div>
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </div>
+      <div class="loan-divider"></div>
+      <div class="loan-body">
+
+        <div class="loan-left">
+
+          <div class="loan-icon">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+
+          <div class="loan-details">
+
+            <h3>Personal Loan</h3>
+
+            <p>
+              Best match based on your profile
+            </p>
+
+            <div class="loan-info">
+
+              <div>
+                <small>Up to</small>
+                <h4>₹10,00,000</h4>
+                <span>Loan Amount</span>
+              </div>
+
+             <div class="v-divider"></div>
+
+              <div>
+                <small>Interest Rate</small>
+                <h4>11.49%</h4>
+                <span>p.a. onwards</span>
+              </div>
+
+              <div class="v-divider"></div>
+
+              <div>
+                <small>Tenure</small>
+                <h4>12 - 60</h4>
+                <span>Months</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="loan-right">
+
+          <p>Quick disbursal</p>
+
+          <p>Minimal documentation</p>
+
+          <p>Flexible repayment</p>
+
+          <button class="apply-btn">
+              Apply Now
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- LOAN JOURNEY -->
+
+    <div class="journey-card">
+
+      <h2>Your Loan Journey</h2>
+
+      <div class="steps">
+
+        <div class="step">
+
+          <div class="step-icon">
+            <i class="fa-solid fa-check"></i>
+          </div>
+
+          <h4>Apply</h4>
+
+          <p>Application Submitted</p>
+
+        </div>
+
+        <div class="step pending">
+
+          <div class="step-icon">
+            <i class="fa-solid fa-user-check"></i>
+          </div>
+
+          <h4>KYC</h4>
+
+          <p>Under Verification</p>
+
+        </div>
+
+        <div class="step pending">
+
+          <div class="step-icon">
+            <i class="fa-solid fa-file-circle-check"></i>
+          </div>
+
+          <h4>Approval</h4>
+
+          <p>In Review</p>
+
+        </div>
+
+        <div class="step pending">
+
+          <div class="step-icon">
+            <i class="fa-solid fa-money-bill-wave"></i>
+          </div>
+
+          <h4>Disbursal</h4>
+
+          <p>Pending</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CATEGORIES -->
+
+    <div class="categories">
+
+      <div class="category-header">
+
+        <h2>Explore Loan Categories</h2>
+
+        <a href="#">View All</a>
+
+      </div>
+
+      <div class="category-grid">
+
+        <div class="category-card">
+
+          <div class="category-icon green-bg">
+            <i class="fa-solid fa-user"></i>
+          </div>
+
+          <h4>Personal Loan</h4>
+
+        </div>
+
+        <div class="category-card">
+
+          <div class="category-icon pink">
+            <i class="fa-solid fa-house"></i>
+          </div>
+
+          <h4>Home Loan</h4>
+
+        </div>
+
+        <div class="category-card">
+
+          <div class="category-icon blue-bg">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+
+          <h4>Education Loan</h4>
+
+        </div>
+
+        <div class="category-card">
+
+          <div class="category-icon purple-bg">
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+
+          <h4>Business Loan</h4>
+
+        </div>
+
+        <div class="category-card">
+
+          <div class="category-icon yellow-bg">
+            <i class="fa-solid fa-coins"></i>
+          </div>
+
+          <h4>Gold Loan</h4>
+
+        </div>
+
+        <div class="category-card">
+
+          <div class="category-icon blue-bg">
+            <i class="fa-solid fa-car"></i>
+          </div>
+
+          <h4>Car Loan</h4>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    {% endblock %}
+
+
+
+
+
+
+
+
+    /* RECOMMENDED CARD */
+
+.loan-card{
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    margin-bottom:28px;
+    overflow:hidden;
+}
+
+.loan-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 20px;
+}
+
+.loan-header-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.loan-header h2{
+    font-size:15px;
+    font-weight:600;
+    color:#111827;
+    margin:0;
+}
+
+.ai-badge{
+    background:#f3e8ff;
+    color:#7c3aed;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:600;
+}
+
+.loan-divider{
+    height:1px;
+    background:#e5e7eb;
+}
+
+.loan-body{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 20px;
+}
+
+.loan-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    min-width:240px;
+}
+
+.loan-icon{
+    width:60px;
+    height:60px;
+    background:#eef2ff;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#4f46e5;
+    font-size:28px;
+}
+
+.loan-details h3{
+    font-size:16px;
+    font-weight:600;
+    color:#111827;
+    margin-bottom:4px;
+}
+
+.loan-details p{
+    font-size:12px;
+    color:#6b7280;
+    margin:0;
+}
+
+.v-divider{
+    width:1px;
+    height:60px;
+    background:#e5e7eb;
+}
+
+.loan-stat{
+    min-width:120px;
+}
+
+.loan-stat small{
+    display:block;
+    color:#6b7280;
+    font-size:11px;
+    margin-bottom:6px;
+}
+
+.loan-stat h4{
+    font-size:26px;
+    font-weight:700;
+    color:#111827;
+    margin:0 0 4px;
+    line-height:1;
+}
+
+.loan-stat span{
+    color:#6b7280;
+    font-size:12px;
+}
+
+.loan-features{
+    list-style:none;
+    padding:0;
+    margin:0;
+    min-width:180px;
+}
+
+.loan-features li{
+    font-size:12px;
+    color:#4b5563;
+    margin-bottom:8px;
+}
+
+.loan-features li:last-child{
+    margin-bottom:0;
+}
+
+.loan-features li::before{
+    content:"•";
+    color:#4f46e5;
+    margin-right:8px;
+}
+
+.apply-btn{
+    border:none;
+    background:#6d4aff;
+    color:#fff;
+    height:40px;
+    padding:0 24px;
+    border-radius:8px;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.apply-btn:hover{
+    background:#5b36ff;
+}
+
+/* Mobile */
+
+@media(max-width:1200px){
+
+    .loan-body{
+        flex-wrap:wrap;
+        gap:20px;
+    }
+
+    .v-divider{
+        display:none;
+    }
+}
+
+
+<div class="loan-card">
+
+    <div class="loan-header">
+
+        <div class="loan-header-left">
+            <h2>Recommended for You</h2>
+
+            <div class="ai-badge">
+                ✨ AI Powered
+            </div>
+        </div>
+
+        <i class="fa-solid fa-xmark" style="color:#9ca3af;"></i>
+
+    </div>
+
+    <div class="loan-divider"></div>
+
+    <div class="loan-body">
+
+        <div class="loan-left">
+
+            <div class="loan-icon">
+                <i class="fa-solid fa-building-columns"></i>
+            </div>
+
+            <div class="loan-details">
+                <h3>Personal Loan</h3>
+                <p>Best match based on your profile</p>
+            </div>
+
+        </div>
+
+        <div class="v-divider"></div>
+
+        <div class="loan-stat">
+            <small>Up to</small>
+            <h4>₹10,00,000</h4>
+            <span>Loan Amount</span>
+        </div>
+
+        <div class="v-divider"></div>
+
+        <div class="loan-stat">
+            <small>Interest Rate</small>
+            <h4 style="font-size:22px;">11.49%</h4>
+            <span>p.a. onwards</span>
+        </div>
+
+        <div class="v-divider"></div>
+
+        <div class="loan-stat">
+            <small>Tenure</small>
+            <h4 style="font-size:22px;">12 - 60</h4>
+            <span>Months</span>
+        </div>
+
+        <div class="v-divider"></div>
+
+        <ul class="loan-features">
+            <li>Quick disbursal</li>
+            <li>Minimal documentation</li>
+            <li>Flexible repayment</li>
+        </ul>
+
+        <button class="apply-btn">
+            Apply Now
+        </button>
+
+    </div>
+
+</div>

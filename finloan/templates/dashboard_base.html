@@ -1,0 +1,422 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>{% block title %}FinLoan Dashboard{% endblock %}</title>
+
+  <!-- GOOGLE FONT -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- FONT AWESOME -->
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+
+ <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Inter',sans-serif;
+    }
+
+    body{
+      background:#f5f7fb;
+      min-height:100vh;
+      display:flex;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar{
+      width:260px;
+      background:
+      linear-gradient(
+      180deg,
+      #121c52,
+      #0a1338
+      );
+      color:#fff;
+      padding:28px 22px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      position:fixed;
+      left:0;
+      top:0;
+      bottom:0;
+    }
+
+    /* LOGO */
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:40px;
+    }
+
+    .logo-icon{
+      width:50px;
+      height:50px;
+      border-radius:16px;
+      background:
+      linear-gradient(
+      135deg,
+      #7b61ff,
+      #5a3dff
+      );
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:22px;
+      font-weight:800;
+      box-shadow:0 10px 30px rgba(123,97,255,.35);
+    }
+
+    .logo h2{
+      font-size:28px;
+      font-weight:700;
+      line-height:1;
+    }
+
+     .logo h2 span{
+      color:#4f3cff;
+    }
+
+
+    .logo p{
+      font-size:11px;
+      color:#b8c0ff;
+      margin-top:2px;
+    }
+
+    /* MENU */
+
+    .menu{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .menu a{
+      text-decoration:none;
+      color:#d6dcff;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:15px 18px;
+      border-radius:16px;
+      font-size:15px;
+      font-weight:500;
+      transition:.3s;
+    }
+
+    .menu a:hover{
+      background:rgba(255,255,255,.08);
+    }
+
+    .menu a.active{
+      background:
+      linear-gradient(
+      90deg,
+      #7b61ff,
+      #5d3dff
+      );
+      color:#fff;
+      box-shadow:0 12px 30px rgba(123,97,255,.35);
+    }
+
+    .badge{
+      margin-left:auto;
+      width:24px;
+      height:24px;
+      border-radius:50%;
+      background:#7b61ff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    /* MAIN */
+
+    .main{
+      margin-left:260px;
+      width:calc(100% - 260px);
+      
+    }
+
+    /* TOPBAR */
+
+    .header{
+      height:90px;
+      width: 100%;
+      background:#fff;
+      padding:0px 30px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow:0 2px 10px rgba(0,0,0,0.05);
+      position:sticky;
+      top:0;
+      z-index:100;
+      
+    }
+
+    .search-box{
+      flex:1;
+      position:relative;
+      max-width:550px;
+    }
+
+    .search-box input{
+      width:100%;
+      height:56px;
+      border:none;
+      background:#fff;
+      border-radius:18px;
+      padding:0 20px 0 52px;
+      font-size:15px;
+      box-shadow:0 6px 18px rgba(0,0,0,.04);
+      outline:none;
+    }
+
+    .search-box i{
+      position:absolute;
+      left:20px;
+      top:50%;
+      transform:translateY(-50%);
+      color:#7b819d;
+    }
+
+    .top-right{
+      display:flex;
+      align-items:center;
+      gap:20px;
+    }
+
+    .notification{
+      width:52px;
+      height:52px;
+      border-radius:16px;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      box-shadow:0 6px 18px rgba(0,0,0,.04);
+    }
+
+    .notification span{
+      position:absolute;
+      top:10px;
+      right:12px;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#7b61ff;
+    }
+
+    .profile{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      background:#fff;
+      padding:10px 14px;
+      border-radius:18px;
+      box-shadow:0 6px 18px rgba(0,0,0,.04);
+    }
+
+    .profile img{
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      object-fit:cover;
+    }
+
+    .profile h4{
+      font-size:15px;
+      color:#1c2452;
+      margin-bottom:4px;
+    }
+
+    .profile p{
+      font-size:12px;
+      color:#7b819d;
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
+
+    <div>
+
+      <!-- LOGO -->
+
+      <div class="logo">
+
+        <div class="logo-icon">
+          F
+        </div>
+
+        <div>
+          <h2>
+          Fin<span>Loan</span>
+        </h2>
+          <p>Smarter Loans Better Future</p>
+        </div>
+
+      </div>
+
+      <!-- MENU -->
+
+      <div class="menu">
+
+        <a href="#" class="active">
+          <i class="fa-solid fa-table-columns"></i>
+          Dashboard
+        </a>
+
+        <a href="#">
+          <i class="fa-solid fa-compass"></i>
+          Explore Loans
+        </a>
+
+        <a href="#">
+          <i class="fa-regular fa-file-lines"></i>
+          My Applications
+        </a>
+
+        <a href="#">
+          <i class="fa-solid fa-wallet"></i>
+          My Loans
+        </a>
+
+        <a href="#">
+          <i class="fa-solid fa-credit-card"></i>
+          Payments
+        </a>
+
+        <a href="#">
+          <i class="fa-regular fa-folder"></i>
+          Documents
+        </a>
+
+        <a href="#">
+          <i class="fa-regular fa-user"></i>
+          Profile
+        </a>
+
+        <a href="#">
+          <i class="fa-regular fa-bell"></i>
+          Notifications
+          <span class="badge">3</span>
+        </a>
+
+        <a href="#">
+          <i class="fa-solid fa-headset"></i>
+          Support
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="menu">
+
+      <a href="{% url 'logout' %}">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+      </a>
+
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+    <!-- TOPBAR -->
+
+    <div class="header">
+
+      <div class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+          type="text"
+          placeholder="Search for loans, features...">
+
+      </div>
+
+      <div class="top-right">
+
+        <div class="notification">
+
+          <i class="fa-regular fa-bell"></i>
+
+          <span></span>
+
+        </div>
+
+        <div class="profile">
+
+          <img
+            src="https://i.pravatar.cc/100"
+            alt="Profile">
+
+          <div>
+            <h4>Hi, Rahul 👋</h4>
+            <p>Premium User</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div style="padding:30px;">
+
+    {% block content %}
+    {% endblock %}
+
+    </div>
+
+  </main>
+
+</body>
+
+</html>

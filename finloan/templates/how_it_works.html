@@ -1,0 +1,1162 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}How FinLoan Works{% endblock %}
+
+{% block content %}
+
+<section class="bg-[#fafbff] min-h-screen">
+
+    <!-- ================= HERO ================= -->
+    <section class=" mx-auto px-6 pt-16">
+
+        <div class="text-center">
+
+            <span
+                class="inline-flex items-center px-5 py-2 rounded-full bg-indigo-100 text-indigo-600 text-xs font-bold uppercase tracking-wider">
+                Simple • Secure • Smart
+            </span>
+
+            <h1 class="mt-6 text-4xl md:text-6xl font-bold text-[#101848]">
+                How FinLoan Works
+            </h1>
+
+            <p class="mt-5 text-slate-500 text-lg max-w-3xl mx-auto">
+                Getting a loan has never been easier. Follow these simple steps
+                and get funds in your account quickly.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROCESS TIMELINE ================= -->
+
+    <section class=" mx-auto px-6 pt-20">
+
+        <div class="relative">
+
+            <!-- Dotted Connector -->
+
+            <div
+                class="hidden lg:block absolute top-12 left-[11%] right-[11%] border-t-2 border-dashed border-indigo-200">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 relative z-10">
+
+                <!-- STEP 1 -->
+
+                <div class="text-center">
+
+                    <div class="relative inline-block">
+
+                        <div
+                            class="w-28 h-28 rounded-full bg-gradient-to-br from-indigo-50 to-indigo-100 flex items-center justify-center mx-auto">
+
+                            <svg class="w-12 h-12 text-indigo-600"
+                                fill="currentColor"
+                                viewBox="0 0 24 24">
+
+                                <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/>
+
+                            </svg>
+
+                        </div>
+
+                        <div
+                            class="absolute -top-1 -right-1 w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold shadow-lg">
+                            1
+                        </div>
+
+                    </div>
+
+                    <h3 class="mt-6 text-2xl font-bold text-[#101848]">
+                        Check Eligibility
+                    </h3>
+
+                    <p class="mt-4 text-slate-500 leading-relaxed">
+                        Tell us a few basic details
+                        to check your loan
+                        eligibility in seconds.
+                    </p>
+
+                </div>
+
+
+                <!-- STEP 2 -->
+
+                <div class="text-center">
+
+                    <div class="relative inline-block">
+
+                        <div
+                            class="w-28 h-28 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center mx-auto">
+
+                            <svg class="w-12 h-12 text-blue-600"
+                                fill="currentColor"
+                                viewBox="0 0 24 24">
+
+                                <path d="M10 4h4l2 2h4v14H4V6h4l2-2zm2 4a3 3 0 100 6 3 3 0 000-6z"/>
+
+                            </svg>
+
+                        </div>
+
+                        <div
+                            class="absolute -top-1 -right-1 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-lg">
+                            2
+                        </div>
+
+                    </div>
+
+                    <h3 class="mt-6 text-2xl font-bold text-[#101848]">
+                        Choose Loan
+                    </h3>
+
+                    <p class="mt-4 text-slate-500 leading-relaxed">
+                        Select from a wide range of
+                        loan options that best fit
+                        your needs.
+                    </p>
+
+                </div>
+
+
+                <!-- STEP 3 -->
+
+                <div class="text-center">
+
+                    <div class="relative inline-block">
+
+                        <div
+                            class="w-28 h-28 rounded-full bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center mx-auto">
+
+                            <svg class="w-12 h-12 text-green-500"
+                                fill="currentColor"
+                                viewBox="0 0 24 24">
+
+                                <path d="M6 2h9l5 5v15H6z"/>
+                                <path d="M9 13l2 2 4-4" stroke="white" stroke-width="2" fill="none"/>
+
+                            </svg>
+
+                        </div>
+
+                        <div
+                            class="absolute -top-1 -right-1 w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center font-bold shadow-lg">
+                            3
+                        </div>
+
+                    </div>
+
+                    <h3 class="mt-6 text-2xl font-bold text-[#101848]">
+                        Submit & Verify
+                    </h3>
+
+                    <p class="mt-4 text-slate-500 leading-relaxed">
+                        Upload required documents
+                        and complete quick
+                        verification.
+                    </p>
+
+                </div>
+
+
+                <!-- STEP 4 -->
+
+                <div class="text-center">
+
+                    <div class="relative inline-block">
+
+                        <div
+                            class="w-28 h-28 rounded-full bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center mx-auto">
+
+                            <svg class="w-12 h-12 text-orange-500"
+                                fill="currentColor"
+                                viewBox="0 0 24 24">
+
+                                <path d="M12 2l2.8 5.6 6.2.9-4.5 4.4 1.1 6.2L12 16.8 6.4 19l1.1-6.2L3 8.5l6.2-.9z"/>
+
+                            </svg>
+
+                        </div>
+
+                        <div
+                            class="absolute -top-1 -right-1 w-10 h-10 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold shadow-lg">
+                            4
+                        </div>
+
+                    </div>
+
+                    <h3 class="mt-6 text-2xl font-bold text-[#101848]">
+                        Get Approved
+                    </h3>
+
+                    <p class="mt-4 text-slate-500 leading-relaxed">
+                        We review your application
+                        and approve your loan
+                        instantly.
+                    </p>
+
+                </div>
+
+
+                <!-- STEP 5 -->
+
+                <div class="text-center">
+
+                    <div class="relative inline-block">
+
+                        <div
+                            class="w-28 h-28 rounded-full bg-gradient-to-br from-violet-50 to-violet-100 flex items-center justify-center mx-auto">
+
+                            <svg class="w-12 h-12 text-violet-600"
+                                fill="currentColor"
+                                viewBox="0 0 24 24">
+
+                                <path d="M12 2L2 7v2h20V7L12 2zM4 11h3v8H4zm6 0h4v8h-4zm7 0h3v8h-3zM2 21h20v-2H2z"/>
+
+                            </svg>
+
+                        </div>
+
+                        <div
+                            class="absolute -top-1 -right-1 w-10 h-10 bg-violet-600 text-white rounded-full flex items-center justify-center font-bold shadow-lg">
+                            5
+                        </div>
+
+                    </div>
+
+                    <h3 class="mt-6 text-2xl font-bold text-[#101848]">
+                        Get Funds
+                    </h3>
+
+                    <p class="mt-4 text-slate-500 leading-relaxed">
+                        Funds are transferred
+                        securely to your bank
+                        account.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= SECURITY STRIP ================= -->
+
+    <section class=" mx-auto px-6 mt-20">
+
+        <div
+            class="bg-gradient-to-r from-indigo-50 via-purple-50 to-indigo-50 border border-indigo-100 rounded-3xl p-8">
+
+            <div class="grid lg:grid-cols-4 gap-8 items-center">
+
+                <!-- Main Security -->
+
+                <div class="flex items-center gap-5">
+
+                    <div
+                        class="w-20 h-20 rounded-3xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-lg">
+
+                        <svg class="w-10 h-10 text-white"
+                            fill="currentColor"
+                            viewBox="0 0 24 24">
+
+                            <path d="M12 2l8 4v6c0 5.5-3.8 10.7-8 12-4.2-1.3-8-6.5-8-12V6l8-4z"/>
+
+                        </svg>
+
+                    </div>
+
+                    <div>
+
+                        <h4 class="font-bold text-xl text-indigo-600">
+                            100% Secure Process
+                        </h4>
+
+                        <p class="text-slate-600 mt-2 text-sm">
+                            Your data is safe with us. We use bank-level
+                            security to protect your information.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- Feature -->
+
+                <div class="flex items-center gap-4">
+
+                    <div
+                        class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center">
+
+                        🔒
+
+                    </div>
+
+                    <div>
+
+                        <h5 class="font-semibold">
+                            Bank-level Security
+                        </h5>
+
+                        <p class="text-sm text-slate-500">
+                            256-bit encryption
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="flex items-center gap-4">
+
+                    <div
+                        class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
+
+                        🛡️
+
+                    </div>
+
+                    <div>
+
+                        <h5 class="font-semibold">
+                            Privacy Protected
+                        </h5>
+
+                        <p class="text-sm text-slate-500">
+                            Your data is never shared
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="flex items-center gap-4">
+
+                    <div
+                        class="w-12 h-12 rounded-full bg-violet-100 flex items-center justify-center">
+
+                        👥
+
+                    </div>
+
+                    <div>
+
+                        <h5 class="font-semibold">
+                            Trusted by Millions
+                        </h5>
+
+                        <p class="text-sm text-slate-500">
+                            1M+ happy customers
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- ================= STEP BY STEP JOURNEY ================= -->
+
+    <section class=" mx-auto px-6 mt-24">
+
+        <div class="text-center">
+
+            <span
+                class="inline-flex items-center px-5 py-2 rounded-full bg-indigo-100 text-indigo-600 text-xs font-bold uppercase tracking-wider">
+                Detailed Process
+            </span>
+
+            <h2 class="mt-5 text-4xl md:text-5xl font-bold text-[#101848]">
+                Step-by-Step Journey
+            </h2>
+
+            <p class="mt-4 text-slate-500 max-w-3xl mx-auto">
+                Here's a closer look at how we make borrowing simple,
+                transparent, and stress-free from start to finish.
+            </p>
+
+        </div>
+
+
+        <!-- Journey Cards -->
+
+        <div class="mt-16 relative">
+
+            <!-- Connector Arrows Desktop -->
+
+            <div class="hidden lg:block absolute top-40 left-[17%] right-[17%]">
+
+                <div class="flex justify-between items-center">
+
+                    <div class="w-16 border-t-2 border-dashed border-indigo-300"></div>
+                    <div class="w-16 border-t-2 border-dashed border-indigo-300"></div>
+                    <div class="w-16 border-t-2 border-dashed border-indigo-300"></div>
+                    <div class="w-16 border-t-2 border-dashed border-indigo-300"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="grid lg:grid-cols-5 gap-6 relative z-10">
+
+
+                <!-- CARD 1 -->
+
+                <div
+                    class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl transition duration-300">
+
+                    <!-- Illustration -->
+
+                    <div
+                        class="h-44 bg-gradient-to-br from-indigo-50 to-blue-50 flex items-center justify-center">
+
+                        <div class="relative">
+
+                            <div
+                                class="w-24 h-24 bg-indigo-500 rounded-full flex items-center justify-center shadow-lg">
+
+                                <svg class="w-12 h-12 text-white"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24">
+
+                                    <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/>
+
+                                </svg>
+
+                            </div>
+
+                            <div
+                                class="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center font-bold">
+                                ✓
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="p-6">
+
+                        <span
+                            class="inline-flex px-3 py-1 rounded-full bg-indigo-100 text-indigo-600 text-xs font-bold">
+                            STEP 1
+                        </span>
+
+                        <h3 class="mt-4 font-bold text-xl text-[#101848]">
+                            Check Eligibility
+                        </h3>
+
+                        <p class="mt-3 text-sm text-slate-500">
+                            Enter your income, employment details and basic information.
+                        </p>
+
+                        <ul class="mt-5 space-y-3 text-sm">
+
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span>
+                                Quick eligibility check
+                            </li>
+
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span>
+                                No impact on credit score
+                            </li>
+
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span>
+                                Instant results
+                            </li>
+
+                        </ul>
+
+                        <div
+                            class="mt-6 inline-flex px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs font-semibold">
+                            Takes 2 Minutes
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 2 -->
+
+                <div
+                    class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl transition duration-300">
+
+                    <div
+                        class="h-44 bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center">
+
+                        <div class="relative">
+
+                            <div
+                                class="w-24 h-24 rounded-3xl bg-blue-500 rotate-6 shadow-lg"></div>
+
+                            <div
+                                class="absolute inset-0 flex items-center justify-center">
+
+                                <svg class="w-12 h-12 text-white"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24">
+
+                                    <path d="M10 4h4l2 2h4v14H4V6h4l2-2z"/>
+
+                                </svg>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="p-6">
+
+                        <span
+                            class="inline-flex px-3 py-1 rounded-full bg-blue-100 text-blue-600 text-xs font-bold">
+                            STEP 2
+                        </span>
+
+                        <h3 class="mt-4 font-bold text-xl text-[#101848]">
+                            Choose Loan
+                        </h3>
+
+                        <p class="mt-3 text-sm text-slate-500">
+                            Compare offers and select the best loan option.
+                        </p>
+
+                        <ul class="mt-5 space-y-3 text-sm">
+
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span>
+                                Multiple loan types
+                            </li>
+
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span>
+                                Transparent rates
+                            </li>
+
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span>
+                                Flexible tenure
+                            </li>
+
+                        </ul>
+
+                        <div
+                            class="mt-6 inline-flex px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs font-semibold">
+                            Takes 3 Minutes
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 3 -->
+
+                <div
+                    class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl transition duration-300">
+
+                    <div
+                        class="h-44 bg-gradient-to-br from-green-50 to-emerald-50 flex items-center justify-center">
+
+                        <div
+                            class="w-28 h-36 bg-white rounded-2xl shadow-lg p-4">
+
+                            <div class="space-y-3">
+
+                                <div class="h-3 bg-green-200 rounded"></div>
+                                <div class="h-3 bg-green-200 rounded"></div>
+                                <div class="h-3 bg-green-200 rounded"></div>
+
+                            </div>
+
+                            <div
+                                class="mt-5 w-12 h-12 rounded-full bg-green-500 flex items-center justify-center mx-auto">
+
+                                ✓
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="p-6">
+
+                        <span
+                            class="inline-flex px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs font-bold">
+                            STEP 3
+                        </span>
+
+                        <h3 class="mt-4 font-bold text-xl text-[#101848]">
+                            Submit & Verify
+                        </h3>
+
+                        <p class="mt-3 text-sm text-slate-500">
+                            Upload documents securely and complete verification.
+                        </p>
+
+                        <ul class="mt-5 space-y-3 text-sm">
+
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span>
+                                Secure uploads
+                            </li>
+
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span>
+                                Digital verification
+                            </li>
+
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span>
+                                Real-time tracking
+                            </li>
+
+                        </ul>
+
+                        <div
+                            class="mt-6 inline-flex px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs font-semibold">
+                            Takes 5 Minutes
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 4 -->
+
+                <div
+                    class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl transition duration-300">
+
+                    <div
+                        class="h-44 bg-gradient-to-br from-orange-50 to-yellow-50 flex items-center justify-center">
+
+                        <div
+                            class="w-24 h-24 rounded-full bg-orange-500 flex items-center justify-center shadow-xl">
+
+                            <svg class="w-12 h-12 text-white"
+                                fill="currentColor"
+                                viewBox="0 0 24 24">
+
+                                <path d="M12 2l2.8 5.6 6.2.9-4.5 4.4 1.1 6.2L12 16.8 6.4 19l1.1-6.2L3 8.5l6.2-.9z"/>
+
+                            </svg>
+
+                        </div>
+
+                    </div>
+
+                    <div class="p-6">
+
+                        <span
+                            class="inline-flex px-3 py-1 rounded-full bg-orange-100 text-orange-600 text-xs font-bold">
+                            STEP 4
+                        </span>
+
+                        <h3 class="mt-4 font-bold text-xl text-[#101848]">
+                            Get Approved
+                        </h3>
+
+                        <p class="mt-3 text-sm text-slate-500">
+                            Our system reviews and approves eligible applications.
+                        </p>
+
+                        <ul class="mt-5 space-y-3 text-sm">
+
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span>
+                                Instant decision
+                            </li>
+
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span>
+                                Fast processing
+                            </li>
+
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span>
+                                Transparent updates
+                            </li>
+
+                        </ul>
+
+                        <div
+                            class="mt-6 inline-flex px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs font-semibold">
+                            Takes 1 Minute
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 5 -->
+
+                <div
+                    class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl transition duration-300">
+
+                    <div
+                        class="h-44 bg-gradient-to-br from-violet-50 to-purple-50 flex items-center justify-center">
+
+                        <div
+                            class="w-32 h-20 rounded-2xl bg-violet-600 shadow-lg flex items-center justify-center">
+
+                            <span class="text-white font-bold text-xl">
+                                ₹
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="p-6">
+
+                        <span
+                            class="inline-flex px-3 py-1 rounded-full bg-violet-100 text-violet-600 text-xs font-bold">
+                            STEP 5
+                        </span>
+
+                        <h3 class="mt-4 font-bold text-xl text-[#101848]">
+                            Get Funds
+                        </h3>
+
+                        <p class="mt-3 text-sm text-slate-500">
+                            Loan amount is transferred directly to your account.
+                        </p>
+
+                        <ul class="mt-5 space-y-3 text-sm">
+
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span>
+                                Direct bank transfer
+                            </li>
+
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span>
+                                Instant notification
+                            </li>
+
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span>
+                                Secure transaction
+                            </li>
+
+                        </ul>
+
+                        <div
+                            class="mt-6 inline-flex px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs font-semibold">
+                            Within Hours
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= REAL TIME TRACKING ================= -->
+
+    <section class=" mx-auto px-6 mt-28">
+
+        <div
+            class="bg-gradient-to-r from-indigo-50 via-white to-purple-50 rounded-[40px] border border-indigo-100 p-8 lg:p-14 overflow-hidden">
+
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+                <!-- PHONE MOCKUP -->
+
+                <div class="flex justify-center">
+
+                    <div class="relative">
+
+                        <!-- Glow -->
+
+                        <div
+                            class="absolute inset-0 blur-3xl bg-indigo-300 opacity-20 rounded-full">
+                        </div>
+
+                        <!-- Phone -->
+
+                        <div
+                            class="relative w-[290px] h-[580px] bg-[#0F172A] rounded-[45px] p-3 shadow-2xl">
+
+                            <div
+                                class="w-full h-full bg-white rounded-[35px] overflow-hidden">
+
+                                <!-- Top -->
+
+                                <div
+                                    class="bg-gradient-to-r from-indigo-600 to-violet-600 px-6 pt-10 pb-8">
+
+                                    <div class="text-white">
+
+                                        <p class="text-sm opacity-80">
+                                            Application Status
+                                        </p>
+
+                                        <h3 class="text-2xl font-bold mt-1">
+                                            Approved 🎉
+                                        </h3>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Tracking -->
+
+                                <div class="p-6 space-y-5">
+
+                                    <div
+                                        class="flex items-center gap-4">
+
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center">
+                                            ✓
+                                        </div>
+
+                                        <div>
+
+                                            <h4 class="font-semibold">
+                                                Eligibility Checked
+                                            </h4>
+
+                                            <p class="text-xs text-slate-500">
+                                                Completed
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div
+                                        class="flex items-center gap-4">
+
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center">
+                                            ✓
+                                        </div>
+
+                                        <div>
+
+                                            <h4 class="font-semibold">
+                                                Documents Verified
+                                            </h4>
+
+                                            <p class="text-xs text-slate-500">
+                                                Completed
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div
+                                        class="flex items-center gap-4">
+
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center">
+                                            ✓
+                                        </div>
+
+                                        <div>
+
+                                            <h4 class="font-semibold">
+                                                Loan Approved
+                                            </h4>
+
+                                            <p class="text-xs text-slate-500">
+                                                Completed
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div
+                                        class="flex items-center gap-4">
+
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center animate-pulse">
+                                            ₹
+                                        </div>
+
+                                        <div>
+
+                                            <h4 class="font-semibold">
+                                                Funds Transfer
+                                            </h4>
+
+                                            <p class="text-xs text-indigo-600">
+                                                In Progress
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div
+                                        class="bg-indigo-50 rounded-2xl p-4 mt-6">
+
+                                        <p
+                                            class="text-xs text-slate-500">
+                                            Loan Amount
+                                        </p>
+
+                                        <h2
+                                            class="text-3xl font-bold text-indigo-600 mt-1">
+                                            ₹2,50,000
+                                        </h2>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CONTENT -->
+
+                <div>
+
+                    <span
+                        class="inline-flex items-center px-4 py-2 rounded-full bg-indigo-100 text-indigo-600 text-xs font-bold uppercase tracking-wider">
+
+                        Real-Time Tracking
+
+                    </span>
+
+                    <h2
+                        class="mt-5 text-4xl md:text-5xl font-bold text-[#101848] leading-tight">
+
+                        Track Every Step
+                        in Real-Time
+
+                    </h2>
+
+                    <p
+                        class="mt-5 text-slate-500 text-lg leading-relaxed">
+
+                        Stay informed throughout your loan journey with
+                        live updates, instant notifications, and complete
+                        transparency from application to disbursement.
+
+                    </p>
+
+
+                    <!-- Features -->
+
+                    <div class="grid sm:grid-cols-2 gap-5 mt-10">
+
+                        <div
+                            class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+
+                            <div
+                                class="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center text-xl">
+
+                                📱
+
+                            </div>
+
+                            <h4
+                                class="font-bold text-lg mt-4">
+
+                                Live Status Updates
+
+                            </h4>
+
+                            <p
+                                class="text-sm text-slate-500 mt-2">
+
+                                Know exactly where your application stands.
+
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+
+                            <div
+                                class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center text-xl">
+
+                                🔔
+
+                            </div>
+
+                            <h4
+                                class="font-bold text-lg mt-4">
+
+                                Instant Notifications
+
+                            </h4>
+
+                            <p
+                                class="text-sm text-slate-500 mt-2">
+
+                                Get alerts whenever progress is made.
+
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+
+                            <div
+                                class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center text-xl">
+
+                                📊
+
+                            </div>
+
+                            <h4
+                                class="font-bold text-lg mt-4">
+
+                                Transparent Process
+
+                            </h4>
+
+                            <p
+                                class="text-sm text-slate-500 mt-2">
+
+                                No hidden steps or confusing updates.
+
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+
+                            <div
+                                class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center text-xl">
+
+                                🤝
+
+                            </div>
+
+                            <h4
+                                class="font-bold text-lg mt-4">
+
+                                Dedicated Support
+
+                            </h4>
+
+                            <p
+                                class="text-sm text-slate-500 mt-2">
+
+                                Expert assistance whenever you need it.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= CTA SECTION ================= -->
+
+    <section class=" mx-auto px-6 mt-24 pb-10">
+
+        <div
+            class="bg-gradient-to-r from-indigo-700 via-violet-600 to-indigo-500 rounded-[28px] p-8 lg:p-10 relative overflow-hidden">
+
+            <div
+                class="absolute top-0 right-0 w-72 h-72 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2">
+            </div>
+
+            <div
+                class="absolute bottom-0 left-0 w-56 h-56 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2">
+            </div>
+
+            <div
+                class="relative flex flex-col lg:flex-row items-center justify-between gap-8">
+
+                <div>
+
+                    <h2
+                        class="text-3xl md:text-4xl font-bold text-white">
+
+                        Ready to Get Started?
+
+                    </h2>
+
+                    <p
+                        class="text-indigo-100 mt-4 text-lg max-w-2xl">
+
+                        Join thousands of customers who trust FinLoan
+                        for fast, secure, and transparent lending.
+
+                    </p>
+
+                </div>
+
+                <div
+                    class="flex flex-col sm:flex-row gap-4">
+
+                    <a href="#"
+                        class="bg-white text-indigo-700 px-8 py-4 rounded-2xl font-bold hover:scale-105 transition">
+
+                        Check Eligibility
+
+                    </a>
+
+                    <a href="#"
+                        class="border border-white text-white px-8 py-4 rounded-2xl font-bold hover:bg-white hover:text-indigo-700 transition">
+
+                        Explore Loans →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,729 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FinLoan Login</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Inter',sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      background:#f6f7fb;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:30px;
+    }
+
+    .login-container{
+      width:1200px;
+      max-width:100%;
+      background:#fff;
+      border-radius:28px;
+      overflow:hidden;
+
+      display:grid;
+      grid-template-columns:430px 1fr;
+
+      box-shadow:0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    /* ================= LEFT PANEL ================= */
+
+    .left-panel{
+      background:linear-gradient(to bottom,#f6f4ff,#ffffff);
+      padding:42px 38px;
+      position:relative;
+    }
+
+    /* LOGO */
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:35px;
+    }
+
+    .logo-icon{
+      width:52px;
+      height:52px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#6f57ff,#3d2dff);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-size:24px;
+      font-weight:800;
+      box-shadow:0 12px 25px rgba(87,64,255,0.28);
+      flex-shrink:0;
+    }
+
+    .logo h2{
+      font-size:35px;
+      color:#0f144b;
+      font-weight:700;
+      line-height:1;
+    }
+
+    .logo h2 span{
+      color:#4f3cff;
+    }
+
+    /* TITLE */
+
+    .welcome-title{
+      font-size:40px;
+      line-height:1.1;
+      font-weight:700;
+      color:#10134e;
+      margin-bottom:20px;
+    }
+
+    .welcome-title span{
+      color:#4c35ff;
+    }
+
+    .subtitle{
+      font-size:20px;
+      line-height:1.8;
+      color:#5f6687;
+      margin-bottom:35px;
+    }
+
+    /* IMAGE SECTION */
+
+    .illustration{
+      position: relative;
+      width:calc(100% + 76px);
+      margin-left: -38px;
+      margin-right: -38px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+      z-index: 1;
+    }
+
+    .illustration img{
+      width:100%;
+      display: block;
+      object-fit:contain;
+
+      filter:drop-shadow(0 25px 45px rgba(91,66,255,0.18));
+
+      
+    }
+
+    @keyframes floatImage{
+
+      0%,100%{
+        transform:translateY(0px);
+      }
+
+      50%{
+        transform:translateY(-10px);
+      }
+
+    }
+
+    /* FEATURES */
+
+    .features{
+      margin-top:10px;
+    }
+
+    .feature{
+      display:flex;
+      gap:18px;
+      margin-bottom:28px;
+      align-items:flex-start;
+    }
+
+    .feature-icon{
+      min-width:58px;
+      height:58px;
+
+      border-radius:18px;
+      background:#f3f1ff;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      color:#5a45ff;
+      font-size:24px;
+    }
+
+    .feature h4{
+      color:#10134e;
+      margin-bottom:6px;
+      font-size:18px;
+    }
+
+    .feature p{
+      color:#697089;
+      font-size:15px;
+      line-height:1.7;
+    }
+
+    /* ================= RIGHT PANEL ================= */
+
+    .right-panel{
+      padding:120px 75px;
+
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .right-panel h1{
+      font-size:40px;
+      color:#10134e;
+      margin-bottom:16px;
+      font-weight:700;
+    }
+
+    .right-panel .desc{
+      color:#6b7280;
+      font-size:20px;
+      margin-bottom:50px;
+    }
+
+    /* INPUTS */
+
+    .input-group{
+      margin-bottom:32px;
+    }
+
+    .input-group label{
+      display:block;
+      margin-bottom:18px;
+
+      font-size:17px;
+      font-weight:700;
+      color:#111827;
+    }
+
+    .input-box{
+      position:relative;
+    }
+
+    .input-box input{
+      width:100%;
+      height:50px;
+
+      border:2px solid #e5e7eb;
+      border-radius:12px;
+
+      padding:0 58px;
+
+      font-size:16px;
+      outline:none;
+
+      transition:0.3s;
+      color:#111827;
+      background:#fff;
+    }
+
+    .input-box input:focus{
+      border-color:#5a45ff;
+
+      box-shadow:0 0 0 4px rgba(90,69,255,0.12);
+    }
+
+    .input-box i{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+
+      color:#7c83a3;
+      font-size:15px;
+    }
+
+    .left-icon{
+      left:22px;
+    }
+
+    .right-icon{
+      right:22px;
+      cursor:pointer;
+    }
+
+    /* FORGOT */
+
+    .forgot{
+      text-align:right;
+      margin-top:-10px;
+      margin-bottom:35px;
+    }
+
+    .forgot a{
+      color:#4c35ff;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    /* LOGIN BUTTON */
+
+    .login-btn{
+      width:100%;
+      height:60px;
+
+      border:none;
+      border-radius:12px;
+
+      background:linear-gradient(
+      90deg,
+      #4427ff,
+      #5d2eff,
+      #3f2bff
+      );
+
+      color:#fff;
+
+      font-size:22px;
+      font-weight:700;
+
+      cursor:pointer;
+      transition:0.3s;
+
+      box-shadow:0 15px 30px rgba(74,46,255,0.35);
+    }
+
+    .login-btn:hover{
+      transform:translateY(-3px);
+    }
+
+    /* DIVIDER */
+
+    .divider{
+      display:flex;
+      align-items:center;
+      gap:18px;
+
+      margin:40px 0;
+
+      color:#7b8099;
+      font-size:16px;
+    }
+
+    .divider::before,
+    .divider::after{
+      content:'';
+      flex:1;
+      height:1px;
+      background:#e5e7eb;
+    }
+
+    /* SOCIAL BUTTONS */
+
+    .social-btn{
+      width:100%;
+      height:50px;
+
+      border:2px solid #e7e8ef;
+      background:#fff;
+
+      border-radius:12px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:15px;
+
+      font-size:22px;
+      font-weight:600;
+
+      margin-bottom:20px;
+
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .social-btn:hover{
+      background:#f8f9ff;
+      border-color:#c9ccff;
+    }
+
+    /* SIGNUP */
+
+    .signup{
+      text-align:center;
+      margin-top:10px;
+
+      font-size:20px;
+      color:#6b7280;
+    }
+
+    .signup a{
+      text-decoration:none;
+      color:#4c35ff;
+      font-weight:700;
+    }
+
+    /* FOOTER */
+
+    .footer{
+      margin-top:170px;
+      border-top:1px solid #ececf4;
+      padding-top:24px;
+
+      display:flex;
+      align-items:center;
+      gap:12px;
+
+      color:#6b7280;
+      font-size:16px;
+    }
+
+    .footer i{
+      color:#4c35ff;
+      font-size:18px;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media(max-width:1100px){
+
+      .login-container{
+        grid-template-columns:1fr;
+      }
+
+      .left-panel{
+        display:none;
+      }
+
+      .right-panel{
+        padding:50px 30px;
+      }
+
+      .right-panel h1{
+        font-size:38px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="login-container">
+
+    <!-- LEFT PANEL -->
+
+    <div class="left-panel">
+
+      <!-- LOGO -->
+
+      <div class="logo">
+
+        <div class="logo-icon">
+          F
+        </div>
+
+        <h2>
+          Fin<span>Loan</span>
+        </h2>
+
+      </div>
+
+      <!-- TITLE -->
+
+      <div class="welcome-title">
+        Welcome 
+        <span>Back!</span>
+      </div>
+
+      <p class="subtitle">
+        Log in to your account and continue your loan journey with FinLoan.
+      </p>
+
+      <!-- IMAGE -->
+
+      <div class="illustration">
+
+        <img
+        src="{% static 'images/animation2.png' %}"
+        alt="Loan Illustration">
+
+      </div>
+
+      <!-- FEATURES -->
+
+      <div class="features">
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            <i class="fa-solid fa-shield"></i>
+          </div>
+
+          <div>
+
+            <h4>Bank-level Security</h4>
+
+            <p>
+              256-bit SSL encryption to keep your data safe
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+
+          <div>
+
+            <h4>Instant Approvals</h4>
+
+            <p>
+              Get quick loan approvals in just a few clicks
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+
+          <div>
+
+            <h4>24/7 Support</h4>
+
+            <p>
+              Our support team is always here to help you
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+
+    <div class="right-panel">
+
+      <h1>Login to Your Account</h1>
+
+      <p class="desc">
+        Enter your details to access your account
+      </p>
+
+      {% if messages %}
+
+        {% for message in messages %}
+
+            <script>
+
+                Swal.fire({
+
+                    toast: true,
+
+                    position: 'top',
+
+                    icon: '{% if message.tags == "success" %}success{% else %}error{% endif %}',
+
+                    title: '{{ message }}',
+
+                    showConfirmButton: false,
+
+                    timer: 3000,
+
+                    
+
+                    background: '#ffffff',
+
+                    color: '#10134e',
+
+                    customClass: {
+
+                        popup: 'rounded-3xl'
+
+                    }
+
+                });
+
+            </script>
+
+        {% endfor %}
+
+      {% endif %}
+      <form method="POST" action="{% url 'login' %}">
+
+        {% csrf_token %}
+
+        <!-- EMAIL -->
+
+        <div class="input-group">
+
+          <label>Email / Mobile Number</label>
+
+          <div class="input-box">
+
+            <i class="fa-regular fa-envelope left-icon"></i>
+
+            <input
+            type="text"
+            name="email"
+            placeholder="Enter email or mobile number"
+            required>
+
+          </div>
+
+        </div>
+
+        <!-- PASSWORD -->
+
+        <div class="input-group">
+
+          <label>Password</label>
+
+          <div class="input-box">
+
+            <i class="fa-solid fa-lock left-icon"></i>
+
+            <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            required>
+
+            <i class="fa-regular fa-eye right-icon"></i>
+
+          </div>
+
+        </div>
+
+        <!-- FORGOT -->
+
+        <div class="forgot">
+          <a href="{% url 'forgot_password' %}">Forgot Password?</a>
+        </div>
+
+        <!-- LOGIN -->
+
+        <button type="submit" class="login-btn">
+          Login
+        </button>
+
+      </form>
+      <!-- DIVIDER -->
+
+      <div class="divider">
+        or continue with
+      </div>
+
+      <!-- GOOGLE -->
+
+      <button class="social-btn">
+
+        <i class="fa-brands fa-google"></i>
+
+        Continue with Google
+
+      </button>
+
+      <!-- APPLE -->
+
+      <button class="social-btn">
+
+        <i class="fa-brands fa-apple"></i>
+
+        Continue with Apple
+
+      </button>
+
+      <!-- SIGNUP -->
+
+      <div class="signup">
+
+        Don’t have an account?
+
+        <a href="{% url 'signup' %}">Sign Up</a>
+
+      </div>
+
+      <!-- FOOTER -->
+
+      <div class="footer">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        Your data is 100% secure with us
+
+      </div>
+
+    </div>
+
+  </div>
+  </div>
+
+  <!-- SWEETALERT -->
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  {% if messages %}
+
+      {% for message in messages %}
+
+          <script>
+
+              Swal.fire({
+
+                  toast: true,
+
+                  position: 'top',
+
+                  icon: '{% if message.tags == "success" %}success{% else %}error{% endif %}',
+
+                  title: '{{ message }}',
+
+                  showConfirmButton: false,
+
+                  timer: 3000,
+
+                  
+
+              });
+
+          </script>
+
+      {% endfor %}
+
+  {% endif %}
+
+
+
+</body>
+</html>

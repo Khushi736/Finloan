@@ -1,0 +1,436 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}FinLoan{% endblock %}
+
+{% block content %}
+
+
+
+<!-- HERO -->
+<section class="hero-gradient py-10 relative overflow-hidden">
+
+    <div class=" mx-auto px-12 grid lg:grid-cols-2 gap-12 items-center ">
+        
+
+        <!-- LEFT -->
+        <div>
+
+            <div class="inline-flex items-center gap-2 bg-indigo-100 text-indigo-700 px-5 py-2 rounded-full text-sm font-semibold mb-8">
+                <i class="bi bi-shield-check"></i>
+                Smart Loans, Better Future
+            </div>
+
+            <h1 class="text-7xl leading-tight font-extrabold text-gray-900 mb-8">
+                Smart Loans for
+                <br>
+                Your
+                <span class="text-indigo-600">Every Need</span>
+            </h1>
+
+            <p class="text-gray-600 text-xl leading-9 mb-10 max-w-xl">
+                Get instant loan recommendations, easy approvals
+                and flexible repayment options — all in one secure
+                platform.
+            </p>
+
+            <!-- FEATURES -->
+            <div class="grid grid-cols-3 gap-6 mb-10">
+
+                <div class="flex gap-3">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl">
+                        <i class="bi bi-lightning-charge"></i>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-sm">Instant Approval</h4>
+                        <p class="text-xs text-gray-500 mt-1">
+                            Quick & hassle-free loan approvals
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <div class="w-12 h-12 rounded-xl bg-green-100 text-green-600 flex items-center justify-center text-xl">
+                        <i class="bi bi-percent"></i>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-sm">Best Interest Rates</h4>
+                        <p class="text-xs text-gray-500 mt-1">
+                            Competitive rates tailored for you
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center text-xl">
+                        <i class="bi bi-shield-lock"></i>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-sm">100% Secure</h4>
+                        <p class="text-xs text-gray-500 mt-1">
+                            Your data is safe with us
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="flex gap-5 mb-10">
+
+                <button class="primary-btn text-white px-10 py-4 rounded-2xl text-lg font-semibold flex items-center gap-3">
+                    Check Eligibility
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+
+                <button class="bg-white border border-gray-200 px-10 py-4 rounded-2xl text-lg font-semibold hover:bg-gray-50">
+                    Explore Loans
+                </button>
+
+            </div>
+
+            <!-- USERS -->
+            <div class="flex items-center gap-4">
+
+                <div class="flex -space-x-3">
+                    <img src="https://i.pravatar.cc/50?img=1"
+                         class="w-11 h-11 rounded-full border-2 border-white">
+
+                    <img src="https://i.pravatar.cc/50?img=2"
+                         class="w-11 h-11 rounded-full border-2 border-white">
+
+                    <img src="https://i.pravatar.cc/50?img=3"
+                         class="w-11 h-11 rounded-full border-2 border-white">
+
+                    <img src="https://i.pravatar.cc/50?img=4"
+                         class="w-11 h-11 rounded-full border-2 border-white">
+                </div>
+
+                <p class="text-gray-600">
+                    Trusted by
+                    <span class="text-indigo-600 font-bold">1M+</span>
+                    customers nationwide
+                </p>
+
+            </div>
+
+        </div>
+
+         <!-- RIGHT IMAGE SECTION -->
+
+        <div class="flex justify-center items-center relative">
+
+            <img
+                src="{% static 'images/landingui.png' %}"
+                alt="FinLoan Illustration"
+
+                class="w-full
+                max-w-[700px]
+                object-contain
+                drop-shadow-[0_25px_50px_rgba(99,102,241,0.25)]"
+            >
+
+        </div>
+    </div>
+       
+</section>
+
+<!-- LOAN CATEGORIES -->
+<section class="py-24 bg-white">
+
+    <div class=" mx-auto px-8">
+
+        <div class="text-center mb-16">
+            <p class="text-indigo-600 font-bold uppercase tracking-widest mb-3">
+                Loan Categories
+            </p>
+
+            <h2 class="text-5xl font-extrabold text-gray-900 mb-5">
+                Loans for Every Dream
+            </h2>
+
+            <p class="text-gray-500 text-xl">
+                Choose from a wide range of loan options designed to meet your needs
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-2 gap-6">
+
+            <!-- CARD -->
+            <div class="bg-white border border-gray-100 rounded-3xl p-7 card-hover">
+                <div class="w-16 h-16 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-3xl mb-6">
+                    <i class="bi bi-person"></i>
+                </div>
+
+                <h3 class="font-bold text-lg mb-3">Personal Loan</h3>
+
+                <p class="text-gray-500 text-sm mb-6">
+                    Fulfil your personal needs with ease
+                </p>
+
+                <a href="#" class="text-indigo-600 font-bold flex items-center gap-2">
+                    Apply Now
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Repeat -->
+            <div class="bg-white border border-gray-100 rounded-3xl p-7 card-hover">
+                <div class="w-16 h-16 rounded-2xl bg-green-100 text-green-600 flex items-center justify-center text-3xl mb-6">
+                    <i class="bi bi-house"></i>
+                </div>
+
+                <h3 class="font-bold text-lg mb-3">Home Loan</h3>
+
+                <p class="text-gray-500 text-sm mb-6">
+                    Own your dream home today
+                </p>
+
+                <a href="#" class="text-indigo-600 font-bold flex items-center gap-2">
+                    Apply Now
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="bg-white border border-gray-100 rounded-3xl p-7 card-hover">
+                <div class="w-16 h-16 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-3xl mb-6">
+                    <i class="bi bi-briefcase"></i>
+                </div>
+
+                <h3 class="font-bold text-lg mb-3">Business Loan</h3>
+
+                <p class="text-gray-500 text-sm mb-6">
+                    Grow your business financially
+                </p>
+
+                <a href="#" class="text-indigo-600 font-bold flex items-center gap-2">
+                    Apply Now
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="bg-white border border-gray-100 rounded-3xl p-7 card-hover">
+                <div class="w-16 h-16 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center text-3xl mb-6">
+                    <i class="bi bi-mortarboard"></i>
+                </div>
+
+                <h3 class="font-bold text-lg mb-3">Education Loan</h3>
+
+                <p class="text-gray-500 text-sm mb-6">
+                    Invest in your future education
+                </p>
+
+                <a href="#" class="text-indigo-600 font-bold flex items-center gap-2">
+                    Apply Now
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="bg-white border border-gray-100 rounded-3xl p-7 card-hover">
+                <div class="w-16 h-16 rounded-2xl bg-yellow-100 text-yellow-600 flex items-center justify-center text-3xl mb-6">
+                    <i class="bi bi-gem"></i>
+                </div>
+
+                <h3 class="font-bold text-lg mb-3">Gold Loan</h3>
+
+                <p class="text-gray-500 text-sm mb-6">
+                    Get instant funds against your gold
+                </p>
+
+                <a href="#" class="text-indigo-600 font-bold flex items-center gap-2">
+                    Apply Now
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="bg-white border border-gray-100 rounded-3xl p-7 card-hover">
+                <div class="w-16 h-16 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center text-3xl mb-6">
+                    <i class="bi bi-car-front"></i>
+                </div>
+
+                <h3 class="font-bold text-lg mb-3">Car Loan</h3>
+
+                <p class="text-gray-500 text-sm mb-6">
+                    Drive your dream car with easy loans
+                </p>
+
+                <a href="#" class="text-indigo-600 font-bold flex items-center gap-2">
+                    Apply Now
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FEATURES -->
+<section class="pb-24">
+
+    <div class=" mx-auto px-8">
+
+        <div class="bg-[#f4f1ff] rounded-[40px] p-10 grid lg:grid-cols-4 gap-8">
+
+            <div class="flex gap-5">
+                <div class="w-16 h-16 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-3xl">
+                    <i class="bi bi-file-earmark-text"></i>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-xl mb-2">
+                        Instant & Paperless
+                    </h3>
+
+                    <p class="text-gray-500">
+                        100% digital process with minimal documentation
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex gap-5">
+                <div class="w-16 h-16 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-3xl">
+                    <i class="bi bi-stars"></i>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-xl mb-2">
+                        AI Loan Recommendation
+                    </h3>
+
+                    <p class="text-gray-500">
+                        Get personalized loan options powered by AI
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex gap-5">
+                <div class="w-16 h-16 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-3xl">
+                    <i class="bi bi-calendar-week"></i>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-xl mb-2">
+                        Flexible Repayment
+                    </h3>
+
+                    <p class="text-gray-500">
+                        Choose tenure & EMI plans that suit your budget
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex gap-5">
+                <div class="w-16 h-16 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-3xl">
+                    <i class="bi bi-headset"></i>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-xl mb-2">
+                        24/7 Customer Support
+                    </h3>
+
+                    <p class="text-gray-500">
+                        We’re always here to help you at every step
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="pb-28 bg-white">
+
+    <div class=" mx-auto px-8">
+
+        <div class="text-center mb-20">
+            <p class="text-indigo-600 font-bold uppercase tracking-widest mb-3">
+                How It Works
+            </p>
+
+            <h2 class="text-5xl font-extrabold mb-5">
+                Simple Steps to Get Your Loan
+            </h2>
+
+            <p class="text-gray-500 text-xl">
+                Our quick and easy process makes borrowing simple and stress-free.
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-4 gap-10 relative">
+
+            <div class="text-center">
+                <div class="w-28 h-28 rounded-full bg-indigo-100 mx-auto flex items-center justify-center text-indigo-600 text-5xl mb-8">
+                    <i class="bi bi-person"></i>
+                </div>
+
+                <h3 class="text-2xl font-bold mb-4">
+                    Check Eligibility
+                </h3>
+
+                <p class="text-gray-500">
+                    Fill in basic details to check your eligibility
+                </p>
+            </div>
+
+            <div class="text-center">
+                <div class="w-28 h-28 rounded-full bg-green-100 mx-auto flex items-center justify-center text-green-600 text-5xl mb-8">
+                    <i class="bi bi-file-earmark-text"></i>
+                </div>
+
+                <h3 class="text-2xl font-bold mb-4">
+                    Choose Loan
+                </h3>
+
+                <p class="text-gray-500">
+                    Select the loan that best fits your needs
+                </p>
+            </div>
+
+            <div class="text-center">
+                <div class="w-28 h-28 rounded-full bg-orange-100 mx-auto flex items-center justify-center text-orange-600 text-5xl mb-8">
+                    <i class="bi bi-cloud-upload"></i>
+                </div>
+
+                <h3 class="text-2xl font-bold mb-4">
+                    Submit & Verify
+                </h3>
+
+                <p class="text-gray-500">
+                    Upload documents & complete verification
+                </p>
+            </div>
+
+            <div class="text-center">
+                <div class="w-28 h-28 rounded-full bg-indigo-100 mx-auto flex items-center justify-center text-indigo-600 text-5xl mb-8">
+                    <i class="bi bi-check-circle"></i>
+                </div>
+
+                <h3 class="text-2xl font-bold mb-4">
+                    Get Approved
+                </h3>
+
+                <p class="text-gray-500">
+                    Get approved instantly & receive funds quickly
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+
+{% endblock %}
